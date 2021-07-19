@@ -1,8 +1,12 @@
+import PaintingExhibition from "./pages/PaintingExhibition";
+import { GlobalStyle } from "./styles/Global";
+
 function App() {
   return (
-    <div className="App">
-     
-    </div>
+    <>
+      <GlobalStyle/>
+      <PaintingExhibition/>
+    </>
   );
 }
 

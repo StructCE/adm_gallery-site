@@ -64,6 +64,30 @@ export const Container = styled.div`
             }
         }
     }
+
+    @media (max-width: 768px){
+        font-size: .9rem;
+
+        .selected{
+            font-size: .9rem;
+        }
+
+        .select-filter .options li {
+            font-size: .8rem;
+        }
+    }
+
+    @media (max-width: 540px){
+        font-size: 1.1rem;
+
+        .selected{
+            font-size: 1rem;
+        }
+
+        .select-filter .options li {
+            font-size: .9rem;
+        }
+    }
 `
 
 export const ArrowIcon = styled.button`

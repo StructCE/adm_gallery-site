@@ -16,6 +16,7 @@ export const Container = styled.div`
         border: none;
         outline: none;
         background: inherit;
+        color: #A9927D;
     }
 
     input::placeholder {
@@ -25,5 +26,21 @@ export const Container = styled.div`
     .icon {
         transform: rotateY(180deg);
         color: #c4c4c4;
+    }
+
+
+    @media (max-width: 768px){
+        width: 16rem;
+        input {
+            font-size: .9rem;
+        }
+    }
+
+    @media (max-width: 540px){
+        width: 90vw;
+
+        input {
+            font-size: 1.1rem;
+        }
     }
 `

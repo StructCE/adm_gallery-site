@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     height: 80vh;
-    width: 25rem;
+    width: 30rem;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0.25rem
+    margin: 0.25rem;
 `
 
 export const Frame = styled.div`
@@ -40,7 +40,7 @@ export const Plate = styled.div`
     display: inline-block;
     text-align: center;
     letter-spacing: 0.1rem;
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 0.55);
     line-height: 2rem;
     margin-top: 5vh;
 

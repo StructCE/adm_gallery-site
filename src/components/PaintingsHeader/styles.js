@@ -7,6 +7,7 @@ export const Container = styled.div`
     /* justify-content: center; */
     align-items: center;
     position: relative;
+    text-align: center;
     h1 {
         font-family: 'playfair display', sans-serif;
         font-size: 3rem;
@@ -23,5 +24,17 @@ export const Container = styled.div`
         position: absolute;
         top: 3rem;
         right: 18vw;
+    }
+
+    @media (max-width: 1200px){
+        .line, .icon{
+            display: none;
+        }
+    }
+
+    @media (max-width: 768px){
+        h1 {
+            font-size: 2.5rem;
+        }
     }
 `

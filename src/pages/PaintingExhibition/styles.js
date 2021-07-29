@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const PaintingsPage = styled.section`
     background: #F2F4F3;
-    padding: 20vh 0;
+    padding: 10vh 0;
+    min-height: 100vh;
 `
 
 export const Paintings = styled.div`
@@ -15,6 +16,16 @@ export const Paintings = styled.div`
         justify-content: space-between;
         margin: 0 5vw;
         align-items: flex-start;
+
+        @media (max-width: 768px){
+            margin: 0;
+        }
+
+        @media (max-width: 540px){
+            flex-direction: column;
+            align-items: center;
+            gap: 5vh
+        }
     }
 `
 

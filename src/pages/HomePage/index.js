@@ -1,6 +1,7 @@
 import React from 'react'
-import { LandingContainer, AboutUsContainer } from './styles';
+import { LandingContainer, AboutUsContainer, RecommendationsContainer } from './styles';
 import CreatorItem from '../../components/CreatorItem';
+import CarouselPage from '../../components/CarouselPage';
 import venus from '../../assets/HomePage/venus.png'
 import gogh from '../../assets/HomePage/gogh.png'
 import eliseu from '../../assets/HomePage/eliseu.png'
@@ -8,8 +9,23 @@ import mountains from '../../assets/HomePage/mountains.png'
 import andre from '../../assets/HomePage/Andre.jpeg'
 import david from '../../assets/HomePage/David.jpeg'
 import nicolas from '../../assets/HomePage/Nicolas.jpeg'
+import api from '../../api/index';
+import { useEffect, useState } from 'react';
 
 const HomePage = () => {
+
+  const [reccomendations, setReccomendations] = useState([])
+
+  const loadRecommendations = async () => {
+    const response = await api.get('/api/v1/recommendations/');
+    setReccomendations(response.data);
+    console.log(response.data);
+  }
+
+  useEffect(() => {
+    loadRecommendations();
+  }, [])
+
   return (
     <>
     <LandingContainer>
@@ -53,6 +69,10 @@ const HomePage = () => {
         <img src={mountains} alt='line mountains' />
       </div>
     </AboutUsContainer>
+
+    <RecommendationsContainer>
+      <CarouselPage reccomendations={reccomendations} desc="A natureza morta é um gênero artístico Que tem como ponto principal a representação de objetos estáticos e inanimados, comuns do cotidiano, como frutas, flores, louças, instrumentos musicais, livros, utensílios domésticos, entre outros." before="Anos 80" after="Natureza Morta" image1={eliseu} image2={venus} image3={gogh} />
+    </RecommendationsContainer>
     </>
   )
 }

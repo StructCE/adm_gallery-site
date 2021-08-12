@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    outline: none;
-    border: none;
     color: #FFF;
     font-size: 1rem;
     width: 15vw;

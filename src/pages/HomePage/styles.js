@@ -181,6 +181,7 @@ export const AboutUsContainer = styled.section`
     bottom: 0px;
     z-index: -1;
     img{
+      width: 100vw;
       object-fit: cover;
       object-position: center left;
     }
@@ -311,4 +312,14 @@ export const AboutUsContainer = styled.section`
       display: none;
     }
   }
+`;
+
+export const RecommendationsContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+  position: relative;
 `;

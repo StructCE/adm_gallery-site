@@ -1,12 +1,12 @@
 import {Container} from './styles';
 
-const CreatorItem = ({children, style, onClick, image, name, props}) => {
+const CreatorItem = ({image, name}) => {
     return (
-        <Container image={image} name={name} style={style} onClick={onClick} {...props}>
+        <Container image={image} name={name}>
             <section>
                 <img src={image} alt="foto do criador" />
             </section>
-            <div class="creator-name">
+            <div className="creator-name">
               <span>{name}</span>
             </div>
         </Container>

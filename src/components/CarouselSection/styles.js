@@ -89,6 +89,10 @@ export const Container = styled.div`
       transform: translate(0, -2vh)
     }
 
+    .painting-carousel{
+      max-height: 100%;
+    }
+
     @media screen and (min-width: 700px) and (orientation: portrait){
       .left-img{
         display: none;

@@ -1,7 +1,7 @@
 import React from 'react'
 import { LandingContainer, AboutUsContainer, RecommendationsContainer } from './styles';
 import CreatorItem from '../../components/CreatorItem';
-import CarouselPage from '../../components/CarouselPage';
+import CarouselSection from '../../components/CarouselSection';
 import venus from '../../assets/HomePage/venus.png'
 import gogh from '../../assets/HomePage/gogh.png'
 import eliseu from '../../assets/HomePage/eliseu.png'
@@ -71,7 +71,7 @@ const HomePage = () => {
     </AboutUsContainer>
 
     <RecommendationsContainer>
-      <CarouselPage reccomendations={reccomendations} desc="A natureza morta é um gênero artístico Que tem como ponto principal a representação de objetos estáticos e inanimados, comuns do cotidiano, como frutas, flores, louças, instrumentos musicais, livros, utensílios domésticos, entre outros." before="Anos 80" after="Natureza Morta" image1={eliseu} image2={venus} image3={gogh} />
+      <CarouselSection reccomendations={reccomendations} />
     </RecommendationsContainer>
     </>
   )

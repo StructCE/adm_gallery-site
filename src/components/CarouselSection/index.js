@@ -1,43 +1,64 @@
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 import { Container } from './styles';
+import { useEffect, useState } from 'react';
 import CarouselButton from '../CarouselButton';
 import CarouselNearButton from '../CarouselNearButton';
-import { useEffect, useState } from 'react';
+import CarouselImage from '../CarouselImage';
 import api from '../../api/index';
+import Modal from '../Modal';
 
 
-const CarouselPage = ({reccomendations}) => {
+const CarouselSection = ({reccomendations}) => {
   
+  // Indexes and size
   const [index, setIndex] = useState([])
   const size = reccomendations.length;
+  const nextIdx = index <= 0 ? size - 1 : index - 1
+  const previousIdx = index < size - 1 ? index + 1 : 0
+
   const paintings_qtd = reccomendations[index]?.paintings.length;
   const title = reccomendations[index]?.title;
   const desc = reccomendations[index]?.description;
-  const beforeIdx = index <= 0 ? size - 1 : index - 1
-  const afterIdx = index < size - 1 ? index + 1 : 0
-  const before = reccomendations[beforeIdx]?.title;
-  const after = reccomendations[afterIdx]?.title;
+  const before = reccomendations[nextIdx]?.title;
+  const after = reccomendations[previousIdx]?.title;
   const middle_img_url = reccomendations[index]?.paintings[0].image_url
   const left_img_url = reccomendations[index]?.paintings[paintings_qtd - 1].image_url
   const right_img_url = reccomendations[index]?.paintings[1 < paintings_qtd - 1 ? 1 : 0].image_url
 
+  // Full page carousel controllers
   const loadInitial = async () => {
     setIndex(0);
   }
 
   const nextSet = () => {
-    setIndex(afterIdx);
+    setIndex(nextIdx);
   }
 
   const previousSet = () => {
-    setIndex(beforeIdx);
+    setIndex(previousIdx);
   }
 
   useEffect(() => {
     loadInitial();
   }, [])
 
+  // Modal Controllers
+  const [showModal, setShowModal] = useState(false)
+
+  const openModal = () => {
+    setShowModal(prev => !prev)
+  }
+
   return (
-      <Container >
+      <Container>
+          <Modal showModal={showModal} setShowModal={setShowModal}> 
+            <Carousel className="painting-carousel" dynamicHeight={true} showStatus={false} infiniteLoop={true} useKeyboardArrows={true} swipeable={true} >
+                {reccomendations[index]?.paintings.map(
+                  painting => <CarouselImage key={painting.id} title={painting.name} imgUrl={`${api.defaults.baseURL + painting.image_url}`}/>
+                )}
+            </Carousel>
+          </Modal>
           <div>
               <p className="colletion-header">Nossas Coleções</p>
           </div>
@@ -57,17 +78,17 @@ const CarouselPage = ({reccomendations}) => {
           </div>
           <div className="collection-photos">
             <div className="left-img">
-              <img src={`${api.defaults.baseURL + left_img_url}`} alt='From collection' />
+              <img onClick={openModal} src={`${api.defaults.baseURL + left_img_url}`} alt='From collection' />
             </div>
             <div className="middle-img">
-              <img src={`${api.defaults.baseURL + middle_img_url}`} alt='From collection' />
+              <img onClick={openModal} src={`${api.defaults.baseURL + middle_img_url}`} alt='From collection' />
             </div>
             <div className="right-img">
-              <img src={`${api.defaults.baseURL + right_img_url}`} alt='From collection' />
+              <img onClick={openModal} src={`${api.defaults.baseURL + right_img_url}`} alt='From collection' />
             </div>
           </div>
       </Container>
   )
 }
 
-export default CarouselPage;
+export default CarouselSection;

@@ -1,6 +1,6 @@
 import { Container } from './styles';
 
-const CarouselButton = ({children, style, onClick,props}) => {
+const CarouselButton = ({children, style, onClick, props}) => {
     return (
         <Container style={style} onClick={onClick} {...props}>
             {children}

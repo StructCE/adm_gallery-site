@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Contaier = styled.button`
+export const Container = styled.button`
     background-color: #A9927D;
     outline: none;
     border: 3px solid #5E503F;

@@ -1,10 +1,10 @@
-import { Contaier } from "./styles"
+import { Container } from "./styles"
 
-const Button = ({children, style, onClick, props}) => {
+const Button = ({children, onClick, props}) => {
     return (
-        <Contaier>
+        <Container onClick={onClick} {...props}>
             {children}
-        </Contaier>
+        </Container>
     )
 }
 

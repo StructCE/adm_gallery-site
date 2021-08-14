@@ -18,7 +18,7 @@ export const FormsContainer = styled.div`
     form {
         max-width: 23.438rem;
         width: 100%;
-    }
+    };
     h1 {
         max-width: 23.438rem;
         font-size: 2.5rem;
@@ -26,6 +26,13 @@ export const FormsContainer = styled.div`
         font-weight: bold;
         text-align: center;
         margin-bottom: 10%;
+    };
+    span {
+        display: flex;
+        font-size: 2rem;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
     };
 `
 

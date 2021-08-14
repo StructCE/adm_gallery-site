@@ -1,7 +1,7 @@
 import { Container } from './styles';
 import { useState } from 'react';
 
-const Input = ({Icon, ...props}) => {
+const Input = ({Icon, value, ...props}) => {
 
     const [isFocus, setIsFocus] = useState(false);
     const [isFilled, setIsFilled] = useState(false);

@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import CarouselButton from '../CarouselButton';
 import CarouselNearButton from '../CarouselNearButton';
 import CarouselImage from '../CarouselImage';
-import api from '../../api/index';
+import { api } from '../../services/api';
 import Modal from '../Modal';
 
 

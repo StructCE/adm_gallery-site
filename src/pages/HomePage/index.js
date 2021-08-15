@@ -9,7 +9,7 @@ import mountains from '../../assets/HomePage/mountains.png'
 import andre from '../../assets/HomePage/Andre.jpeg'
 import david from '../../assets/HomePage/David.jpeg'
 import nicolas from '../../assets/HomePage/Nicolas.jpeg'
-import api from '../../api/index';
+import { api } from '../../services/api';
 import { useEffect, useState } from 'react';
 
 const HomePage = () => {

@@ -18,14 +18,14 @@ const Filter = ({setSelectedFilter}) => {
     }
 
     useEffect(() => {
-        api.get('/artists/index')
+        api.get('/api/v1/artists/index')
         .then((response) => {response.data.forEach(element => {
             setFilterOptions((filterOptions => [...filterOptions, element.name]))
         })})
     }, [])
 
     useEffect(() => {
-        api.get('/styles')
+        api.get('/api/v1/styles')
         .then((response) => {response.data.forEach(element => {
             setFilterOptions((filterOptions => [...filterOptions, element.title]))
         })})

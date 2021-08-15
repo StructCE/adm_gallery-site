@@ -16,7 +16,7 @@ const PaintingExhibition = () => {
     const [searchedPaintings, setSearchedPaintings] = useState([]);
 
     useEffect(() =>{
-        api.get('/paintings/index')
+        api.get('/api/v1/paintings/index')
         .then((response) => {
             setPaintings(response.data);
             setFilteredPaintings(response.data);
@@ -64,7 +64,7 @@ const PaintingExhibition = () => {
                 <Container>
                     { searchedPaintings.map((item) => {return (
                         <FramedPainting
-                            image={item.image_url ? `http://localhost:3001/${item.image_url}` : placeholder }
+                            image={item.image_url ? `${api.defaults.baseURL + item.image_url}` : placeholder }
                             title={item.name} artist={item.artist_name} key={item.id}/>
                     )}) }
                 </Container>

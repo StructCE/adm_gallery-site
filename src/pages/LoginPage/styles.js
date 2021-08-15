@@ -17,11 +17,18 @@ export const FormsContainer = styled.div`
     width: 100%;
     form {
         max-width: 23.438rem;
-        width: 100%;
+        width: 80%;
+        Button {
+            width: 100%;
+        }
     }
     h1 {
         max-width: 23.438rem;
+        width: 80%;
         font-size: 2.5rem;
+        @media only screen and (max-width: 1000px) {
+            font-size: 2rem;
+        }
         color: #0A2463; 
         font-weight: bold;
         text-align: center;
@@ -29,7 +36,7 @@ export const FormsContainer = styled.div`
     };
     p {
         max-width: 23.438rem;
-        width: 100%;
+        width: 80%;
         text-align: center;
         border-bottom: 1px solid #A9927D;
         line-height: 0.1rem;
@@ -41,11 +48,16 @@ export const FormsContainer = styled.div`
         padding: 0 10px;
         color: #5E503F;
     }
+
     Button {
         max-width: 23.438rem;
-        width: 100%;
-        min-height: 4.375rem;
+        @media only screen and (max-width: 1000px) {
+            height: 3.5rem;
+        }
+        width: 80%;
     }
+
+
 `;
 
 export const ImageContainer = styled.div`

@@ -8,6 +8,10 @@ export const Container = styled.button`
     color: #F2F4F3;
     height: 4.375rem;
     width: 100%;
+    @media only screen and (max-width: 1000px) {
+        height: 3.5rem;
+        font-size: 1.3rem;
+    }
     font-size: 1.875rem;
     &:hover {
         background-color: #5E503F;

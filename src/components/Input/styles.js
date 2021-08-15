@@ -11,6 +11,9 @@ export const Container = styled.div`
     border-radius: 50px;
     transition: 0.2s;
     margin-bottom: 2.75rem;
+    @media only screen and (max-width: 1000px) {
+        height: 3.5rem;
+    }
 
     svg {
         color: #A9927D;
@@ -27,10 +30,13 @@ export const Container = styled.div`
     }
     input {
         margin-left: 1.3rem;
-        margin-right: 1.3rem;
+        margin-right: 0.8rem;
         height: 100%;
         width: 100%;
         font-size: 1.875rem;
+        @media only screen and (max-width: 1000px) {
+            font-size: 1.3rem;
+        }
         outline: none;
         border: none;
         color: #808080;

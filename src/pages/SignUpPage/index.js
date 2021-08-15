@@ -82,7 +82,9 @@ const SignUpPage = () =>{
                         type = 'password'
                         onChange={(value) => {setPasswordConfirmation(value.target.value)}}
                     />
-                    <span>Conta Privada? <Switch checked={confidential} onChange={toggleConfidential} color='primary'/></span>
+                    <span>Conta Privada <Switch checked={confidential} onChange={toggleConfidential} color='primary'/></span>
+                    <br/>
+                    <br/>
                     <Button type="submit">Criar Conta</Button>
                 </form>
             </FormsContainer>

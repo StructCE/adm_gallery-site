@@ -1,6 +1,6 @@
 import FramedPainting from "../../components/FramedPainting"
 import placeholder from '../../assets/placeholder.png'
-import { Container, PaintingsPage, Paintings } from "./styles";
+import { Container, PaintingsPage, Paintings, Line } from "./styles";
 import PaintingsHeader from "../../components/PaintingsHeader";
 import SearchField from "../../components/SearchField";
 import Filter from "../../components/Filter";
@@ -60,6 +60,7 @@ const PaintingExhibition = () => {
                     <SearchField placeholder="Nos diga o que está procurando..." onChange={(value) => setSearchInput(value.target.value)}/>
                     <Filter setSelectedFilter={setSelectedFilter}/>
                 </div>
+                <Line/>
                 <Container>
                     { searchedPaintings.map((item) => {return (
                         <FramedPainting

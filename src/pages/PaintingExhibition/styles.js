@@ -29,6 +29,13 @@ export const Paintings = styled.div`
     }
 `
 
+export const Line = styled.hr`
+    width: 70rem;
+    border: unset;
+    border-top: .15rem solid #c1c3c2;
+    margin: auto;
+`
+
 export const Container = styled.div`
     width: 100%;
     display: flex;

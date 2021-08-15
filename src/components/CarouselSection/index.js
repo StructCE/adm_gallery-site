@@ -1,18 +1,19 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { Container } from './styles';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CarouselButton from '../CarouselButton';
 import CarouselNearButton from '../CarouselNearButton';
 import CarouselImage from '../CarouselImage';
 import { api } from '../../services/api';
 import Modal from '../Modal';
+import blank from '../../assets/blank_canvas.jpeg'
 
 
 const CarouselSection = ({reccomendations}) => {
   
   // Indexes and size
-  const [index, setIndex] = useState([])
+  const [index, setIndex] = useState(0)
   const size = reccomendations.length;
   const nextIdx = index <= 0 ? size - 1 : index - 1
   const previousIdx = index < size - 1 ? index + 1 : 0
@@ -22,26 +23,19 @@ const CarouselSection = ({reccomendations}) => {
   const desc = reccomendations[index]?.description;
   const before = reccomendations[nextIdx]?.title;
   const after = reccomendations[previousIdx]?.title;
-  const middle_img_url = reccomendations[index]?.paintings[0].image_url
-  const left_img_url = reccomendations[index]?.paintings[paintings_qtd - 1].image_url
-  const right_img_url = reccomendations[index]?.paintings[1 < paintings_qtd - 1 ? 1 : 0].image_url
+  const middle_img_url = reccomendations[index]?.paintings[0]?.image_url
+  const left_img_url = reccomendations[index]?.paintings[paintings_qtd - 1]?.image_url
+  const right_img_url = reccomendations[index]?.paintings[0 < paintings_qtd - 1 ? 1 : 0]?.image_url
 
   // Full page carousel controllers
-  const loadInitial = async () => {
-    setIndex(0);
-  }
-
   const nextSet = () => {
     setIndex(nextIdx);
+    console.log(left_img_url)
   }
 
   const previousSet = () => {
     setIndex(previousIdx);
   }
-
-  useEffect(() => {
-    loadInitial();
-  }, [])
 
   // Modal Controllers
   const [showModal, setShowModal] = useState(false)
@@ -78,13 +72,13 @@ const CarouselSection = ({reccomendations}) => {
           </div>
           <div className="collection-photos">
             <div className="left-img">
-              <img onClick={openModal} src={`${api.defaults.baseURL + left_img_url}`} alt='From collection' />
+              <img onClick={openModal} src={typeof(left_img_url) != "undefined" ? `${api.defaults.baseURL + left_img_url}` : blank} alt='From collection' />
             </div>
             <div className="middle-img">
-              <img onClick={openModal} src={`${api.defaults.baseURL + middle_img_url}`} alt='From collection' />
+              <img onClick={openModal} src={typeof(middle_img_url) != "undefined" ? `${api.defaults.baseURL + middle_img_url}` : blank} alt='From collection' />
             </div>
             <div className="right-img">
-              <img onClick={openModal} src={`${api.defaults.baseURL + right_img_url}`} alt='From collection' />
+              <img onClick={openModal} src={typeof(right_img_url) != "undefined" ? `${api.defaults.baseURL + right_img_url}` : blank} alt='From collection' />
             </div>
           </div>
       </Container>

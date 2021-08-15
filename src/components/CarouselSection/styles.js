@@ -172,4 +172,41 @@ export const Container = styled.div`
         font-size: 2.5rem;
       }
     }
+
+    .carousel.carousel-slider {
+    overflow: inherit;
+}
+
+.carousel .control-next.control-arrow, .carousel .control-next.control-arrow:hover{
+    background-color: transparent;
+    right: 0px;
+    top: 50%;
+}
+
+.carousel .control-prev.control-arrow, .carousel .control-prev.control-arrow:hover {
+    background-color: transparent;
+    left: 0px;
+    top: 50%;
+}
+
+.carousel .control-next.control-arrow:before {
+    content: '';
+    border: solid #F2F4F3;
+    border-width: 0 8px 8px 0;
+    display: inline-block;
+    padding: 14px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.carousel .control-prev.control-arrow:before {
+    content: '';
+    border: solid #F2F4F3;
+    box-shadow: 1px;
+    border-width: 0 8px 8px 0;
+    display: inline-block;
+    padding: 14px;
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
 `;

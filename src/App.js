@@ -4,7 +4,6 @@ import { Routes } from './routes'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 
-
 function App() {
   return (
     <BrowserRouter>

@@ -11,7 +11,7 @@ import blank from '../../assets/blank_canvas.jpeg'
 
 
 const CarouselSection = ({reccomendations}) => {
-  
+
   // Indexes and size
   const [index, setIndex] = useState(0)
   const size = reccomendations.length;
@@ -49,7 +49,10 @@ const CarouselSection = ({reccomendations}) => {
           <Modal showModal={showModal} setShowModal={setShowModal}> 
             <Carousel className="painting-carousel" dynamicHeight={true} showStatus={false} infiniteLoop={true} useKeyboardArrows={true} swipeable={true} >
                 {reccomendations[index]?.paintings.map(
-                  painting => <CarouselImage key={painting.id} title={painting.name} imgUrl={`${api.defaults.baseURL + painting.image_url}`}/>
+                  painting => 
+                  <div>
+                    <CarouselImage key={painting.id} id={painting.id} title={painting.name} imgUrl={`${api.defaults.baseURL + painting.image_url}`}/>
+                  </div>
                 )}
             </Carousel>
           </Modal>

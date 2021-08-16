@@ -1,4 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
+import UserProvider from "./contexts/useUserContext";
 import Routes from "./Routes";
 import { GlobalStyle } from "./styles/Global";
 
@@ -7,9 +8,11 @@ function App() {
   return (
     <div className="App">
       <>
-        <GlobalStyle />
         <BrowserRouter>
-          <Routes/>
+          <UserProvider>
+            <GlobalStyle />
+            <Routes/>
+          </UserProvider>
         </BrowserRouter>
       </>
     </div>

@@ -5,8 +5,11 @@ import { IoIosMail, IoIosLock } from 'react-icons/io'
 import Button from "../../components/Button";
 import { useHistory } from "react-router-dom";
 import { api } from "../../services/api";
+import { useUserContext } from "../../contexts/useUserContext";
 
 const LoginPage = () => {
+
+    const {login} = useUserContext()
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -20,19 +23,7 @@ const LoginPage = () => {
         }else if(password === ''){
             alert('Senha deve estar preenchida.');
         };
-        try{
-            const response = await api.post('/users/login', {
-                email,
-                password
-            })
-            console.log(response.data)
-            if(response.data) {
-                alert('Usuário logado.')
-                history.push('/signup')
-            }
-        }catch(e){
-            alert(e)
-        }
+        await login({email, password})
     };
 
     const handleClick = () => {

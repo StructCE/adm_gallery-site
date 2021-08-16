@@ -19,10 +19,10 @@ const Navbar = () => {
             <NavbarBtn onClick={toggleNavar}/>
             <NavbarMenu state={toggleMenu}>
                 <CloseMenu onClick={toggleNavar}/>
-                <NavbarItem title="Início" icon={<HiHome/>} where='/'/>
+                <NavbarItem title="Início" icon={<HiHome/>} where={{pathname: '/', state: { toCollection: false }}}/>
                 <NavbarItem title="Artistas" icon={<FaPersonBooth/>} where='/artists'/>
                 <NavbarItem title="Obras" icon={<FaPaintBrush/>} where='/paintings'/>
-                <NavbarItem title="Coleções" icon={<FaStar/>} where='/'/>
+                <NavbarItem title="Coleções" icon={<FaStar/>} where={{pathname: '/', state: { toCollection: true }}}/>
                 <NavbarItem title="Usuário" icon={<FaUser/>} where='/'/>
                 <NavbarItem title="Logout" icon={<FaUserSlash/>} where='/'/>
             </NavbarMenu>

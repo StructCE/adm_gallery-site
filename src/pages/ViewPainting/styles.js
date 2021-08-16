@@ -74,23 +74,219 @@ export const FirstScreen = styled.div`
             max-height: 100%;
         }
     }
-    h5 {
+
+    .bottom {
         position: absolute;
         bottom: 0;
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-size: 1.75rem;
+        align-items: flex-end;
+        width: 98vw;
+        justify-content: center;
+        margin: auto;
+        font-size: 1.5rem;
         color: #A9927D;
-        font-weight: normal;
 
-        :hover {
+        .previous {
+            position: absolute;
+            left: 0;
+            display: flex;
+            align-items: center;
+            margin-bottom: 3rem;
             cursor: pointer;
+            opacity: .5;
+            transition: .2s ease-in;
+
+            img {
+                transform: rotate(180deg);
+                height: 3rem;
+            }
+
+            :hover {
+                opacity: 1;
+            }
+        }
+
+        h5 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-self: center;
+            font-size: 1.75rem;
+            font-weight: normal;
+            opacity: .5;
+            transition: .2s ease-in;
+
+            :hover {
+                cursor: pointer;
+                opacity: 1;
+            }
+        }
+
+        .next {
+            position: absolute;
+            right: 0;
+            display: flex;
+            align-items: center;
+            margin-bottom: 3rem;
+            cursor: pointer;
+            opacity: .5;
+            transition: .2s ease-in;
+
+            img {
+                height: 3rem;
+            }
+
+            :hover {
+                opacity: 1;
+            }
         }
     }
 
 `
 
 export const SecondScreen = styled.div`
-    
+    height: 100vh;
+    background-color: #A9927D;
+    color: #F2F4FE;
+    position: relative;
+      
+    p { font-size: 2.25rem; }
+
+    .top {
+        display: flex;
+        padding-top: 3rem;
+        margin: 0 8vw;
+        
+
+        .left {
+        height: 75vh;
+        flex: 1;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        margin-right: 10%;
+        
+            .image-container {
+                width: 90%;
+                height: 60%;
+                
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center 0;
+                }
+            }
+
+            p {
+                width: 90%;
+                font-size: 2rem;
+            }
+
+            .artist-btn {
+                width: 80%;
+                button {
+                    height: unset;
+                    font-size: 1.5rem;
+                    color: #0A2463;
+                    background-color: transparent;
+                    padding: .6rem;
+                    border: 2px solid #0A2463;
+                    transition: .4s ease;
+
+                    :hover {
+                        background-color: #0A2463;
+                        color: #F2F4FE;
+                        cursor: pointer;
+                    }
+                }
+            }
+    }
+
+        .right {
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+
+            span {
+                font-size: 1.75rem;
+            }
+
+            .image-container {
+                align-self: center;
+                width: 75%;
+                height: 50%;
+                
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+        }
+    }
+
+    .about-style {
+        overflow: auto;
+        width: 75%;
+        margin: auto;
+        height: 15vh;
+        font-size: 2rem;
+    }
+
+    .bottom {
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        align-items: flex-end;
+        width: 98vw;
+        justify-content: center;
+        margin: auto;
+        color: #6F1D1B;
+        margin: 0 1vw;
+
+        p {font-size: 1.5rem}
+
+        .previous {
+            position: absolute;
+            left: 0;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            opacity: .5;
+            transition: .2s ease-in;
+
+            img {
+                transform: rotate(180deg);
+                height: 3rem;
+            }
+
+            :hover {
+                opacity: 1;
+            }
+        }
+
+        .next {
+            position: absolute;
+            right: 0;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            opacity: .5;
+            transition: .2s ease-in;
+
+            img {
+                height: 3rem;
+            }
+
+            :hover {
+                opacity: 1;
+            }
+        }
+    }
+
 `

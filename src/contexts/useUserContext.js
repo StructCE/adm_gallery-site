@@ -40,6 +40,7 @@ const UserProvider = ({children}) => {
                 if (response){
                     console.log (response)
                     Cookies.remove('gallery.user')
+                    setUser(null)
                     history.push('/')
                 }
     

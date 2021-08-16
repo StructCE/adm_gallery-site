@@ -1,10 +1,10 @@
-import { useHistory } from "react-router-dom"
 import Button from "../../components/Button"
 import { useUserContext } from "../../contexts/useUserContext"
 
 const Test = () => {
 
     const {user, logout} = useUserContext()
+    console.log(user)
 
     return (
         <>

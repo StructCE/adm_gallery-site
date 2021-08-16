@@ -65,7 +65,7 @@ const PaintingExhibition = () => {
                     { searchedPaintings.map((item) => {return (
                         <FramedPainting
                             image={item.image_url ? `${api.defaults.baseURL + item.image_url}` : placeholder }
-                            title={item.name} artist={item.artist_name} key={item.id}/>
+                            title={item.name} artist={item.artist_name} key={item.id} id={item.id}/>
                     )}) }
                 </Container>
             </Paintings>

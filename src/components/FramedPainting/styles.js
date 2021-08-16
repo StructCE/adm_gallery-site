@@ -17,7 +17,6 @@ export const Frame = styled.div`
     margin: 1.75rem 0;
     display: flex;
     justify-content: center;
-    /* margin: 1rem; */
 
     img {
         max-height: 100%;
@@ -28,6 +27,10 @@ export const Frame = styled.div`
         align-self: center;
         display: block;
         margin: auto;
+
+        :hover {
+            cursor: pointer;
+        }
     }
 `
 
@@ -74,6 +77,10 @@ export const Plate = styled.div`
             align-items: center;
             gap: .3rem;
             cursor: pointer;
+
+            a {
+                text-decoration: none;
+            }
         }
     }
 `

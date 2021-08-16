@@ -58,9 +58,13 @@ export const FirstScreen = styled.div`
         height: 70vh;
 
         .image-container {
+            align-self: flex-start;
             display: flex;
             justify-content: center;
             flex: 2;
+            height: 80%;
+            width: 5rem;
+
         }
 
         .about {
@@ -87,6 +91,7 @@ export const FirstScreen = styled.div`
         }
 
         img {
+            object-fit: contain;
             max-width: 100%;
             max-height: 100%;
         }
@@ -234,6 +239,14 @@ export const SecondScreen = styled.div`
             display: flex;
             flex-direction: column;
             gap: 2rem;
+            height: 75vh;
+
+            .description {
+                height: 34%;
+                overflow-y: auto;
+                display: flex;
+                align-items: center;
+            }
 
             span {
                 font-size: 1.75rem;

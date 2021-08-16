@@ -59,7 +59,7 @@ const UserProvider = ({children}) => {
                 setUser(response.data)
                 Cookies.set('gallery.user', JSON.stringify(response.data))
                 alert('Usuário logado.')
-                history.push('/test')
+                history.push('/')
             }
         }catch(e){
             alert(e)

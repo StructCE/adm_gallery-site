@@ -1,8 +1,8 @@
-import { Route, Switch } from "react-router-dom"
-import LoginPage from "../pages/LoginPage"
-import SignUpPage from "../pages/SignUpPage"
+import { Switch, Route } from "react-router-dom"
+import LoginPage from "./pages/LoginPage"
+import SignUpPage from "./pages/SignUpPage"
 
-const Routes = () => {
+export const Routes = () => {
     return(
         <Switch>
             <Route exact path='/signup' component={SignUpPage}/>
@@ -10,5 +10,3 @@ const Routes = () => {
         </Switch>
     )
 }
-
-export default Routes

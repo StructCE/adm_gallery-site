@@ -21,7 +21,7 @@ const LoginPage = () => {
             alert('Senha deve estar preenchida.');
         };
         try{
-            const response = await api.post('/users/login', {
+            const response = await api.post('/api/v1//users/login', {
                 email,
                 password
             })

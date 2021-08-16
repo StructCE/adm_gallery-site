@@ -20,7 +20,7 @@ const Navbar = () => {
             <NavbarMenu state={toggleMenu}>
                 <CloseMenu onClick={toggleNavar}/>
                 <NavbarItem title="Início" icon={<HiHome/>} where='/'/>
-                <NavbarItem title="Artistas" icon={<FaPersonBooth/>} where='/'/>
+                <NavbarItem title="Artistas" icon={<FaPersonBooth/>} where='/artists'/>
                 <NavbarItem title="Obras" icon={<FaPaintBrush/>} where='/paintings'/>
                 <NavbarItem title="Coleções" icon={<FaStar/>} where='/'/>
                 <NavbarItem title="Usuário" icon={<FaUser/>} where='/'/>

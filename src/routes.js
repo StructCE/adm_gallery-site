@@ -4,6 +4,7 @@ import PaintingExhibition from './pages/PaintingExhibition'
 import LoginPage from "./pages/LoginPage"
 import SignUpPage from "./pages/SignUpPage"
 import ArtistPage from "./pages/ArtistPage";
+import ArtistsExhibition from "./pages/ArtistsExhibition"
 
 export const Routes = () => {
   return (
@@ -22,6 +23,9 @@ export const Routes = () => {
       </Route>
       <Route exact path="/artist/:id">
         <ArtistPage />
+      </Route>
+      <Route exact path="/artists">
+        <ArtistsExhibition />
       </Route>
     </Switch>
   )

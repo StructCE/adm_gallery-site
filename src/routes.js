@@ -27,6 +27,7 @@ export const Routes = () => {
       </Route>
       <Route exact path="/artists">
         <ArtistsExhibition />
+      </Route>
       <Route exact path="/paintings/:id">
         <ViewPainting />
       </Route>

@@ -8,14 +8,90 @@ export const Container = styled.section`
   background-color: var(--PerisanPlum);
   color: white;
 
+  .artist-data{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 50%;
+    padding: 2vw;
+    height: 100vh;
+
+    .artist-name{
+      text-align: center;
+      font-size: 5rem;
+      font-style: italic;
+      margin-bottom: 2vw;
+    }
+
+    .artist-place{
+      display: flex;
+      justify-content: center;
+      font-size: 1.35rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .artist-dates{
+      display: flex;
+      justify-content: space-around;
+      font-size: 1.35rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 3vw;
+    }
+
+    .artist-bio {
+      align-items: center;
+      text-align: justify;
+      text-justify: inter-word;
+      font-size: 1.35rem;
+    }
+
+    .paintings-btn{
+      display: flex;
+      align-self: center;
+      width: 60%;
+      padding: 0;
+    }
+
+    @media screen and (max-width: 830px){
+      flex-direction: column;
+      max-width: 100%;
+      height: initial;
+      margin: 1rem;
+
+      .artist-name{
+        font-size: 4rem;
+      }
+
+      .artist-place{
+        font-size: 1.3rem;
+      }
+
+      .artist-dates{
+        font-size: 1.1rem;
+      }
+
+      .artist-bio {
+        margin-bottom: 1rem;;
+      }
+    }
+  }
+  
+  @media screen and (max-width: 830px){
+    flex-direction: column;
+    height: initial;
+  }
+
   .artist-img{
     img{
       object-fit: cover;
-      max-width: 100%;
       width: 50vw;
       height: 100%;
       box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.25);
-      object-position: fill;
+
+      @media screen and (max-width: 830px){
+        width: 100vw;
+        height: 50%;
+      }
     }
   }
 `;

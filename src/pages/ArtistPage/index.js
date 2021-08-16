@@ -5,45 +5,54 @@ import { Container } from './styles';
 import { WiStars } from "react-icons/wi";
 import { CgCross } from "react-icons/cg";
 import { IoLocationSharp } from "react-icons/io5";
+import { useParams } from "react-router-dom";
+import Button from "../../components/Button";
+import placeholder from "../../assets/placeholder.png"
 
 const ArtistPage = () => {
 
+  let { id } = useParams();
+
   const [artist, setArtist] = useState([])
 
-  const loadArtist = async () => {
-    const response = await api.get('/api/v1/artists/show/1');
-    setArtist(response.data);
-  }
-
-
   useEffect(() => {
+    const loadArtist = async () => {
+      const response = await api.get(`/api/v1/artists/show/${id}`);
+      setArtist(response.data);
+    };
+
     loadArtist();
-  }, [])
+  }, [id])
 
   return (
-    <>
     <Container>
       <div className="artist-img">
-        <img src={`${api.defaults.baseURL + artist.image_url}`} alt={`${artist.name}`} />
+        <img src={artist.image_url != null ? `${api.defaults.baseURL + artist.image_url}` : placeholder} alt={`${artist.name}`} />
       </div>
-      <div className="artist-info">
-        <h1 className="artist-name">{artist.name}</h1>
-        <div className="artist-birth">
-          <IoLocationSharp />
-          <span>{artist.birthplace}</span>
+      <div className="artist-data">
+        <div className="artist-basic">
+          <h1 className="artist-name">{artist.name}</h1>
+          <div className="artist-place">
+            <IoLocationSharp />
+            <span>{artist.birthplace}</span>
+          </div>
+          <div className="artist-dates">
+            <div className="artist-birth">
+              <WiStars />
+              <span>{artist.birthdate}</span>
+            </div>
+            <div className="artist-death">
+              <CgCross />
+              <span>{artist.deathdate}</span>
+            </div>
+          </div>
+        <p className="artist-bio">&emsp;{artist.biography}</p>
         </div>
-        <div className="artist-birth">
-          <WiStars />
-          <span>{artist.birthdate}</span>
+        <div className="paintings-btn">
+          <Button >Principais Obras</Button>
         </div>
-        <div className="artist-death">
-          <CgCross />
-          <span>{artist.deathdate}</span>
-        </div>
-        <p className="artist-bio">{artist.biography}</p>
       </div>
     </Container>
-    </>
   )
 }
 

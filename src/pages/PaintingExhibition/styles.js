@@ -34,6 +34,7 @@ export const Line = styled.hr`
     border: unset;
     border-top: .15rem solid #c1c3c2;
     margin: auto;
+    max-width: 90vw;
 `
 
 export const Container = styled.div`

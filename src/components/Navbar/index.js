@@ -28,7 +28,7 @@ const Navbar = () => {
                 {user !== null
                     ? 
                     <>
-                        <NavbarItem title="Usuário" icon={<FaUser/>} where='/'/>
+                        <NavbarItem title="Usuário" icon={<FaUser/>} where='/profile'/>
                         <BtnContainer onClick={logout}>
                             <FaUserSlash/>
                             <span>Logout</span>

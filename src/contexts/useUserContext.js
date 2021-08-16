@@ -35,7 +35,7 @@ const UserProvider = ({children}) => {
         if (handler) {
             
             try{
-                const response = await api.post('users/logout')
+                const response = await api.post('/api/v1/users/logout')
                 console.log(response)
                 if (response){
                     console.log (response)
@@ -50,7 +50,7 @@ const UserProvider = ({children}) => {
 
     const login = async ({email, password}) => {
         try{
-            const response = await api.post('/users/login', {
+            const response = await api.post('/api/v1/users/login', {
                 email,
                 password
             })

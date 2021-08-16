@@ -31,7 +31,7 @@ const SignUpPage = () =>{
             alert('Senha e confirmação devem ser iguais.')
         }
         try{
-            const response = await api.post('/users/create', {
+            const response = await api.post('/api/v1/users/create', {
                 user: {
                     name,
                     email,

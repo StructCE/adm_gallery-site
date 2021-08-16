@@ -1,21 +1,17 @@
-import { BrowserRouter } from "react-router-dom";
-import UserProvider from "./contexts/useUserContext";
-import Routes from "./Routes";
 import { GlobalStyle } from "./styles/Global";
+import { BrowserRouter } from "react-router-dom";
+import { Routes } from "./routes";
+import UserProvider from "./contexts/useUserContext";
 
 
 function App() {
   return (
-    <div className="App">
-      <>
-        <BrowserRouter>
-          <UserProvider>
-            <GlobalStyle />
-            <Routes/>
-          </UserProvider>
-        </BrowserRouter>
-      </>
-    </div>
+    <BrowserRouter>
+      <UserProvider>
+        <GlobalStyle />
+        <Routes/>
+      </UserProvider>
+    </BrowserRouter>
   );
 }
 

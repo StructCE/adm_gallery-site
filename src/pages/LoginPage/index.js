@@ -4,7 +4,6 @@ import { useState } from "react";
 import { IoIosMail, IoIosLock } from 'react-icons/io'
 import Button from "../../components/Button";
 import { useHistory } from "react-router-dom";
-import { api } from "../../services/api";
 import { useUserContext } from "../../contexts/useUserContext";
 
 const LoginPage = () => {

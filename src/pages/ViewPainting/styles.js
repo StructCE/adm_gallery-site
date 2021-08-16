@@ -1,6 +1,22 @@
 import styled from "styled-components";
 
+export const Container = styled.section`
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 100vh;
+    scroll-snap-type: mandatory;
+    scroll-snap-points-y: repeat(100vh);
+    scroll-snap-type: y mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
+`
+
 export const FirstScreen = styled.div`
+
     height: 100vh;
     background-color: #5E503F;
     color: #F2F4FE;
@@ -10,6 +26,7 @@ export const FirstScreen = styled.div`
     padding-top: 5rem;
     text-align: center;
     position: relative;
+    scroll-snap-align: start;
 
     h1, h3 {
         font-style: italic;
@@ -106,6 +123,11 @@ export const FirstScreen = styled.div`
             }
         }
 
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
         h5 {
             display: flex;
             flex-direction: column;
@@ -149,6 +171,8 @@ export const SecondScreen = styled.div`
     background-color: #A9927D;
     color: #F2F4FE;
     position: relative;
+    scroll-snap-align: start;
+
       
     p { font-size: 2.25rem; }
 

@@ -1,7 +1,7 @@
 import { HiOutlineHeart, HiHeart } from 'react-icons/hi';
 import { useState } from 'react'; 
 import { IoIosArrowDown } from 'react-icons/io'
-import { FirstScreen, SecondScreen } from './styles';
+import { Container, FirstScreen, SecondScreen } from './styles';
 import Guernica from '../../assets/guernica.jpg'
 import Monalisa from '../../assets/monalisa.jpg'
 import Button from '../../components/Button'
@@ -16,7 +16,7 @@ const ViewPainting = () => {
     }
 
     return (
-        <>
+        <Container>
             <FirstScreen>
                 <h1>A noite Estrelada</h1>
                 <h3 className="year">1889</h3>
@@ -39,17 +39,19 @@ const ViewPainting = () => {
                         <img src={Arrow} alt="Anterior"/>
                         <p>Anterior na Categoria</p>
                     </div>
-                    <h5>
-                        Leia sobre
-                        <IoIosArrowDown/>
-                    </h5>
+                    <a href="#second-screen">
+                        <h5>
+                            Leia sobre
+                            <IoIosArrowDown/>
+                        </h5>
+                    </a>
                     <div className="next">
                         <p>Próximo na Categoria</p>
                         <img src={Arrow} alt="Próximo"/>
                     </div>
                 </div>
             </FirstScreen>
-            <SecondScreen>
+            <SecondScreen id="second-screen">
                 <div className="top">
                     <div className="left">
                         <div className="image-container">
@@ -89,7 +91,7 @@ const ViewPainting = () => {
                     </div>
                 </div>
             </SecondScreen>
-        </>
+        </Container>
     )
 }
 

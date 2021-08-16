@@ -6,11 +6,14 @@ import SearchField from "../../components/SearchField";
 import Filter from "../../components/Filter";
 import { api } from "../../services/api";
 import { useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom';
 
 const PaintingExhibition = () => {
 
+    const location = useLocation();
+
     const [paintings, setPaintings] = useState([]);
-    const [selectedFilter, setSelectedFilter] = useState('');
+    const [selectedFilter, setSelectedFilter] = useState(location.state?.selectedFilter);
     const [filteredPaintings, setFilteredPaintings] = useState([]);
     const [searchInput, setSearchInput] = useState('');
     const [searchedPaintings, setSearchedPaintings] = useState([]);

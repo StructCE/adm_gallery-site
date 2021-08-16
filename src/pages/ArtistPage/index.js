@@ -8,12 +8,14 @@ import { IoLocationSharp } from "react-icons/io5";
 import { useParams } from "react-router-dom";
 import Button from "../../components/Button";
 import placeholder from "../../assets/placeholder.png"
+import { useHistory } from "react-router-dom";
 
 const ArtistPage = () => {
 
   let { id } = useParams();
 
-  const [artist, setArtist] = useState([])
+  const [artist, setArtist] = useState([]);
+  const history = useHistory()
 
   useEffect(() => {
     const loadArtist = async () => {
@@ -23,6 +25,15 @@ const ArtistPage = () => {
 
     loadArtist();
   }, [id])
+
+  const handleClick = () => {
+    history.push({
+      pathname: '/paintings',
+      state: {
+        selectedFilter: `${artist.name}`,
+      },
+    })
+  }
 
   return (
     <Container>
@@ -49,7 +60,7 @@ const ArtistPage = () => {
         <p className="artist-bio">&emsp;{artist.biography}</p>
         </div>
         <div className="paintings-btn">
-          <Button >Principais Obras</Button>
+          <Button onClick={handleClick}>Principais Obras</Button>
         </div>
       </div>
     </Container>

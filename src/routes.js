@@ -20,7 +20,7 @@ export const Routes = () => {
       <Route exact path="/paintings">
         <PaintingExhibition/>
       </Route>
-      <Route path="/artist/:id">
+      <Route exact path="/artist/:id">
         <ArtistPage />
       </Route>
     </Switch>

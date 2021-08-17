@@ -13,6 +13,11 @@ export const Container = styled.section`
     ::-webkit-scrollbar {
         display: none;
     }
+
+    @media screen and (max-width: 992px) {
+        scroll-snap-type: unset;
+        height: auto;
+    }
 `
 
 export const FirstScreen = styled.div`
@@ -23,7 +28,7 @@ export const FirstScreen = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding-top: 5rem;
+    padding-top: 5vh;
     text-align: center;
     position: relative;
     scroll-snap-align: start;
@@ -63,8 +68,6 @@ export const FirstScreen = styled.div`
             justify-content: center;
             flex: 2;
             height: 80%;
-            width: 5rem;
-
         }
 
         .about {
@@ -117,6 +120,7 @@ export const FirstScreen = styled.div`
             cursor: pointer;
             opacity: .5;
             transition: .2s ease-in;
+            max-width: 30vw;
 
             img {
                 transform: rotate(180deg);
@@ -137,6 +141,8 @@ export const FirstScreen = styled.div`
             font-weight: normal;
             opacity: .5;
             transition: .2s ease-in;
+            max-width: 30vw;
+
 
             :hover {
                 cursor: pointer;
@@ -153,6 +159,7 @@ export const FirstScreen = styled.div`
             cursor: pointer;
             opacity: .5;
             transition: .2s ease-in;
+            max-width: 30vw;
 
             img {
                 height: 3rem;
@@ -162,6 +169,70 @@ export const FirstScreen = styled.div`
                 opacity: 1;
             }
         }
+    }
+
+
+    @media screen and (max-height: 992px){
+        .the-painting .about { gap: 1rem } 
+    }
+
+    @media screen and (max-height: 768px){
+        .the-painting .image-container{
+            height: 30vh;
+            width: 100%;
+        }
+    }
+
+    @media screen and (max-width: 1440px) {
+        h1{font-size: 5rem}
+    }
+
+    @media screen and (max-width: 768px) {
+        h1{font-size: 4rem}
+
+        h3{font-size: 2.5rem}
+
+        .year{margin-top: unset}
+
+        .the-painting .about p {font-size: 1.3rem}
+
+        .bottom .next, .bottom .previous {margin-bottom: .5rem}
+    }
+
+    @media screen and (max-width: 540px) {
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        h1{font-size: 2.5rem;}
+
+        h3{font-size: 1.3rem}
+
+        .the-painting .about {
+            padding: 0;
+            gap: .5rem;
+
+            p {font-size: 1rem}
+        }
+        .bottom {
+            font-size: 1rem;
+
+            h5 {font-size: 1.1rem}
+        }
+
+        .the-painting {
+            flex-direction: column;
+            
+            .image-container {
+                align-self: center;
+                width: 100%;
+            }
+        }
+    }
+
+    @media screen and (max-width: 380px) {
+        .bottom p {display: none}
     }
 
 `
@@ -183,7 +254,7 @@ export const SecondScreen = styled.div`
         
 
         .left {
-        height: 75vh;
+        height: 73vh;
         flex: 1;
         text-align: center;
         display: flex;
@@ -205,12 +276,12 @@ export const SecondScreen = styled.div`
             }
 
             p {
-                width: 90%;
+                width: 100%;
                 font-size: 2rem;
             }
 
             .artist-btn {
-                width: 80%;
+                width: 100%;
                 button {
                     height: unset;
                     font-size: 1.5rem;
@@ -234,7 +305,7 @@ export const SecondScreen = styled.div`
             display: flex;
             flex-direction: column;
             gap: 2rem;
-            height: 75vh;
+            height: 73vh;
 
             .description {
                 height: 34%;
@@ -264,10 +335,13 @@ export const SecondScreen = styled.div`
 
     .about-style {
         overflow: auto;
-        width: 75%;
-        margin: auto;
+        width: 65%;
+        margin: 2vh auto 0;
         height: 15vh;
-        font-size: 2rem;
+
+        p {
+            font-size: 2rem;
+        }
     }
 
     .bottom {
@@ -291,7 +365,8 @@ export const SecondScreen = styled.div`
             cursor: pointer;
             opacity: .5;
             transition: .2s ease-in;
-
+            max-width: 40vw;
+            
             img {
                 transform: rotate(180deg);
                 height: 3rem;
@@ -310,7 +385,12 @@ export const SecondScreen = styled.div`
             cursor: pointer;
             opacity: .5;
             transition: .2s ease-in;
+            max-width: 45vw;
 
+            p{
+                text-align: end;
+            }
+            
             img {
                 height: 3rem;
             }
@@ -319,6 +399,90 @@ export const SecondScreen = styled.div`
                 opacity: 1;
             }
         }
+    }
+
+    @media screen and (max-width: 1440px) {
+        p { font-size: 1.5rem }
+
+        .top {
+            margin: 0 1vw;
+        
+            .left {
+                margin-right: 1rem;
+
+                .image-container {
+                    width: 100%;
+                }
+
+                p {
+                font-size: 1.25rem;
+                }
+
+                .artist-btn button {
+                    font-size: 1rem;
+                }
+            }
+        }
+
+        .about-style p {
+            font-size: 1.25rem;
+        }
+    }
+
+    @media screen and (max-width: 992px){
+        height: auto;
+        padding-bottom: 8vh;
+        
+        .top {
+            flex-direction: column;
+
+            .right {
+                align-items: center;
+                padding-top: 5vh;
+
+                .description { 
+                    justify-content: center;
+                
+                    p {
+                        text-align: center;
+                    }
+                }
+
+                .image-container {
+                    max-height: 60vh;
+                }
+
+                span {
+                    text-align: center;
+                }
+            }
+
+            .left {                                
+                .image-container {
+                    max-height: 70vh;
+                    width: 60vw;
+                }
+                .artist-btn {
+                    button {
+                        width: 60%;
+                    }
+                }
+            }
+        }
+
+        .about-style {
+            text-align: center;
+            width: 90%;
+            height: 12vh;
+        }
+    }
+
+    @media screen and (max-width: 540px) {
+        .bottom p { font-size: 1rem }
+    }
+
+    @media screen and (max-width: 380px) {
+        .bottom p { display: none }
     }
 
 `

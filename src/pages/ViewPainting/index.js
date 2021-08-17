@@ -9,6 +9,7 @@ import { api } from '../../services/api';
 import placeholder from '../../assets/placeholder.png'
 import Artist from '../../assets/artist.png'
 import { useHistory } from 'react-router-dom';
+import { useUserContext } from '../../contexts/useUserContext';
 
 
 const ViewPainting = () => {
@@ -17,6 +18,7 @@ const ViewPainting = () => {
     const screenRef = useRef(null);
     const location = useLocation();
     const {id} = useParams();
+    const { user, library } = useUserContext();
 
     const [index, setIndex] = useState(0);
     const [styleImage, setStyleImage] = useState(null);
@@ -27,9 +29,33 @@ const ViewPainting = () => {
 
     const scrollPage = () => screenRef.current.scrollIntoView({behavior: 'smooth'});
 
+    useEffect(() => {
+        if (library){
+            library.painting_ids.forEach(element => {
+                if (element === painting.id)
+                    setFavorite(true)
+            })}
+    }, [library, painting.id])
 
-    const handleFavoriteClick = () => {
-        setFavorite(!favorite)
+    const handleFavoriteClick = async (paintingId) => {
+        if (!user) {
+            alert("Logue para poder criar a sua galeria!");
+            return;
+        }
+        setFavorite(!favorite);
+        if (!!library){
+            let method = "add";
+            if(favorite)
+                method = "remove";
+            try {
+                await api.patch(`/api/v1/library/${method}_paintings`, {
+                    painting_ids: paintingId
+                })
+            }catch(e){
+                alert(e)
+            }
+        }else 
+            alert("Você ainda não possui uma biblioteca :(")
     }
 
     useEffect(() => {
@@ -80,7 +106,7 @@ const ViewPainting = () => {
                         <h3>{painting.style_name}</h3>
                         <h3>{painting.artist_name}</h3>
                         <p>Adicione essa obra à sua coleção 
-                            <span onClick={() => handleFavoriteClick()}>
+                            <span onClick={() => handleFavoriteClick(painting.id)}>
                                 {favorite ? <HiHeart className="icon" color="#6F1D1B"/> : <HiOutlineHeart className="icon"/> }
                             </span>
                         </p>

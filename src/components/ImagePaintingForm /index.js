@@ -5,7 +5,7 @@ import FormsButton from "../FormsButton"
 import Modal from "../Modal"
 import { Container } from "./styles"
 
-const ImageArtistForm = ({showModal, setShowModal, id}) => {
+const ImagePaintingForm = ({showModal, setShowModal, id}) => {
     
     const history = useHistory()
 
@@ -15,14 +15,14 @@ const ImageArtistForm = ({showModal, setShowModal, id}) => {
         e.preventDefault();
         try{
             const data = new FormData()
-            data.append('picture', image, image.name)
-            const response = await api.post(`/api/v1/artists/edit_picture/${id}`, data, {
+            data.append('image', image, image.name)
+            const response = await api.post(`/api/v1/paintings/edit_image/${id}`, data, {
                 'accept': 'application/json',
                 'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
             })
             if(response.data) {
                 alert('Imagem Atualizada.')
-                history.push(`/artists`)
+                history.push(`/paintings`)
             }
         }catch(e){
             alert(e)
@@ -42,4 +42,4 @@ const ImageArtistForm = ({showModal, setShowModal, id}) => {
     )
 }
 
-export default ImageArtistForm
+export default ImagePaintingForm

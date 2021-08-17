@@ -18,6 +18,13 @@ export const Container = styled.section`
         scroll-snap-type: unset;
         height: auto;
     }
+
+    .form-buttons{
+        position: fixed;
+        bottom:0;
+        left: 0;
+        margin: 1rem;
+    }
 `
 
 export const FirstScreen = styled.div`

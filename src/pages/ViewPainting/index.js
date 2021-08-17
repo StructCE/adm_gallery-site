@@ -1,6 +1,7 @@
 import { HiOutlineHeart, HiHeart } from 'react-icons/hi';
 import { useState, useEffect, useRef } from 'react'; 
 import { IoIosArrowDown } from 'react-icons/io'
+import { MdPhoto } from "react-icons/md";
 import { Container, FirstScreen, SecondScreen } from './styles';
 import Button from '../../components/Button'
 import Arrow from '../../assets/arrow-icon.png'
@@ -8,6 +9,8 @@ import { useLocation, useParams } from 'react-router-dom';
 import { api } from '../../services/api';
 import placeholder from '../../assets/placeholder.png'
 import Artist from '../../assets/artist.png'
+import ImagePaintingForm from "../../components/ImagePaintingForm "
+import PlusButton from "../../components/PlusButton";
 import { useHistory } from 'react-router-dom';
 import { useUserContext } from '../../contexts/useUserContext';
 
@@ -92,9 +95,22 @@ const ViewPainting = () => {
             })
     }, [painting])
 
+    const [showModal, setShowModal] = useState(false)
+
+    const handleShowModal = () => {
+        if (user != null){
+            if (user.admin){
+                setShowModal(true)
+            }
+        }else{
+            alert('Você não é adm.')
+        }
+    }
+
     return (
         painting &&
         <Container>
+            {user!== null && user.admin && <ImagePaintingForm showModal={showModal} setShowModal={setShowModal} id={painting.id}/> }
             <FirstScreen>
                 <h1>{painting.name}</h1>
                 <h3 className="year">{painting.year}</h3>
@@ -173,6 +189,9 @@ const ViewPainting = () => {
                     }
                 </div>
             </SecondScreen>
+            <div className="form-buttons">
+                {user!== null && user.admin && <PlusButton onClick={handleShowModal}><MdPhoto/></PlusButton> }
+            </div>
         </Container>
     )
 }

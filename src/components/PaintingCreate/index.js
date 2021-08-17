@@ -35,12 +35,12 @@ const PaintingsForms = ({showModal, setShowModal}) => {
     }
 
     const loadArtists = async () => {
-        const response = await api.get('/artists/index')
+        const response = await api.get('/api/v1/artists/index')
         setArtists(response.data)
     }
 
     const loadStyles = async () => {
-        const response = await api.get('/styles/index')
+        const response = await api.get('/api/v1/styles')
         setStyles(response.data)
     }
 
@@ -72,10 +72,10 @@ const PaintingsForms = ({showModal, setShowModal}) => {
     const IconSVG3 = () => {
         return (
             <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M23.75 5H6.25C4.86929 5 3.75 6.11929 3.75 7.5V25C3.75 26.3807 4.86929 27.5 6.25 27.5H23.75C25.1307 27.5 26.25 26.3807 26.25 25V7.5C26.25 6.11929 25.1307 5 23.75 5Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M20 2.5V7.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M10 2.5V7.5" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M3.75 12.5H26.25" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M23.75 5H6.25C4.86929 5 3.75 6.11929 3.75 7.5V25C3.75 26.3807 4.86929 27.5 6.25 27.5H23.75C25.1307 27.5 26.25 26.3807 26.25 25V7.5C26.25 6.11929 25.1307 5 23.75 5Z" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M20 2.5V7.5" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M10 2.5V7.5" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M3.75 12.5H26.25" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
         )
     }
@@ -181,7 +181,7 @@ const PaintingsForms = ({showModal, setShowModal}) => {
                             <Select value={styleId} onChange={(value) => setStyleId(+value.target.value)} Icon={ IconSVG4 }>
                                 <option value={0}>Estilo</option>
                                 {styles.map(style => {return(
-                                    <option value={style.id} key={style.id}>{style.name}</option>
+                                    <option value={style.id} key={style.id}>{style.title}</option>
                                 )})}
                             </Select><PlusButton onClick={handleStyleClick}>+</PlusButton>
                         </SelectContainer>

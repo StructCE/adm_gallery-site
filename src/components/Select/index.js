@@ -1,8 +1,9 @@
 import { Container } from './styles';
 import { useState } from 'react';
+import { AiFillCaretDown } from "react-icons/ai"
 
-const Select = ({Icon, value, props, children}) => {
 
+const Select = ({Icon, value, children, ...props}) => {
     const [isFocus, setIsFocus] = useState(false);
     const [isFilled, setIsFilled] = useState(false);
 
@@ -12,7 +13,7 @@ const Select = ({Icon, value, props, children}) => {
 
     const handleOnBlur = (event) => {
         setIsFocus(false);
-        setIsFilled(!!event.target.value);
+        setIsFilled(event.target.value != 0 && !!event.target.value);
     };
 
     return (
@@ -21,6 +22,7 @@ const Select = ({Icon, value, props, children}) => {
             <select onBlur={handleOnBlur} onFocus={handleOnFocus} {...props}>
                 {children}
             </select>
+            <AiFillCaretDown size={30} className="arrow-down"/>
         </Container>
     )
 }

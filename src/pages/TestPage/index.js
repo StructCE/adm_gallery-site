@@ -38,10 +38,6 @@ const Test = () => {
             <Button onClick={logout}>Logout</Button>
             <h1>Hello World</h1>
             <span>{user ? user.name : 'Não está logado'}</span>
-            <TextArea
-                Icon={ IconSVG }
-                placeholder='texrenhaqdfglnja'
-            />
             <FormsButton onClick={handleShowModal}>butao</FormsButton>
         </>
     )

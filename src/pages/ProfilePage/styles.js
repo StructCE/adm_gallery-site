@@ -118,6 +118,7 @@ export const ProfileContainer = styled.section`
 
     .collection-info{
       font-size: 1.3rem;
+      cursor: pointer;
     }
   }
 
@@ -309,6 +310,25 @@ export const Container = styled.div`
     flex-wrap: wrap;
     justify-content: space-around;
     margin: 2vh auto;
+
+    .empty-library {
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+      align-items: center;
+      margin-top: 10vh;
+      font-size: 1.5rem;
+      font-weight: normal;
+      gap: 3rem;
+      text-align: center;
+
+      h4 {
+        color: #5D5FEF;
+        cursor: pointer;
+        
+        :hover {text-decoration: underline}
+      }
+    }
 `
 export const ModalContainer = styled.div`
   min-width: min-content;

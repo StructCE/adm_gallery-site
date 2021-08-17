@@ -1,6 +1,6 @@
 import React from 'react'
 import { api } from '../../services/api';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { ProfileContainer, ModalContainer, FavoritesContainer, Container, Paintings, Line } from './styles';
 import { IoColorPaletteOutline, IoCogOutline } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
@@ -8,7 +8,7 @@ import { FiEdit } from "react-icons/fi";
 import { HiLockOpen, HiLockClosed } from "react-icons/hi";
 import Button from "../../components/Button";
 import placeholder from "../../assets/placeholder.png"
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import { useUserContext } from "../../contexts/useUserContext"
 import GalleryHeader from "../../components/GalleryHeader";
 import SearchField from "../../components/SearchField";
@@ -24,6 +24,10 @@ import FormData from 'form-data'
 const ProfilePage = () => {
 
   const location = useLocation();
+  const history = useHistory();
+  const screenRef = useRef(null);
+
+  const scrollPage = () => screenRef.current.scrollIntoView({behavior: 'smooth'});
 
   const {user, togglePrivate, update, updateUser} = useUserContext()
 
@@ -211,7 +215,7 @@ const ProfilePage = () => {
             <h1>{user.name}</h1>
             <p>{user.bio === null ? "Esse perfil ainda não tem uma biografia :(" : user.bio}</p>
           </div>
-          <div className="collection-info">
+          <div className="collection-info" onClick={() => {scrollPage()}}>
             <span>Sua Coleção</span>
             <div className="arrow-icon">
               <IoIosArrowDown/>
@@ -220,20 +224,29 @@ const ProfilePage = () => {
         </div>
       </ProfileContainer>
       </div>
-      <FavoritesContainer>
+      <FavoritesContainer ref={screenRef}>
         <GalleryHeader title={"Sua galeria particular!"}/>
           <Paintings>
             <div className="search-filters">
-              <SearchField placeholder="Nos diga o que está procurando..." onChange={(value) => setSearchInput(value.target.value)}/>
-              <Filter setSelectedFilter={setSelectedFilter}/>
+              { filteredPaintings &&
+                  <>
+                    <SearchField placeholder="Nos diga o que está procurando..." onChange={(value) => setSearchInput(value.target.value)}/>
+                    <Filter setSelectedFilter={setSelectedFilter}/>
+                  </>
+              }
             </div>
             <Line/>
             <Container>
-                { searchedPaintings.map((item) => {return (
+                { searchedPaintings?.map((item) => {return (
                   <FramedPainting
                     image={item.image_url ? `${api.defaults.baseURL + item.image_url}` : placeholder }
                     title={item.name} artist={item.artist_name} key={item.id} id={item.id}/>
-                )}) }
+                )}) ||
+                  <div className="empty-library">
+                    <h3>Parece que você ainda não adicionou obras a sua biblioteca...</h3>
+                    <h4 onClick={() => history.push('/paintings')}>Veja nossas obras!</h4>
+                  </div>
+                }
             </Container>
           </Paintings>
       </FavoritesContainer>

@@ -22,7 +22,7 @@ const ArtistUpdate = ({showModal, setShowModal}) => {
     const history = useHistory()
 
     const loadArtist = async () => {
-        const response = await api.get(`/artists/show/${id}`)
+        const response = await api.get(`api/v1/artists/show/${id}`)
         setName(response.data.name)
         setBiography(response.data.biography)
         setBirthdate(response.data.birthdate)
@@ -86,7 +86,7 @@ const ArtistUpdate = ({showModal, setShowModal}) => {
                 }
             })
             if(response.data) {
-                alert('Artista criado.')
+                alert('Artista atualizado.')
                 history.push('/')
             }
         }catch(e){

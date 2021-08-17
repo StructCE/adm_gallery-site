@@ -3,6 +3,8 @@ import HomePage from "./pages/HomePage";
 import PaintingExhibition from './pages/PaintingExhibition'
 import LoginPage from "./pages/LoginPage"
 import SignUpPage from "./pages/SignUpPage"
+import ArtistPage from "./pages/ArtistPage";
+import ArtistsExhibition from "./pages/ArtistsExhibition"
 import ViewPainting from './pages/ViewPainting';
 import Test from "./pages/TestPage"
 
@@ -20,6 +22,12 @@ export const Routes = () => {
       </Route>
       <Route exact path="/paintings">
         <PaintingExhibition/>
+      </Route>
+      <Route exact path="/artist/:id">
+        <ArtistPage />
+      </Route>
+      <Route exact path="/artists">
+        <ArtistsExhibition />
       </Route>
       <Route exact path="/paintings/:id">
         <ViewPainting />

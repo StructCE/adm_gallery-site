@@ -10,9 +10,17 @@ import andre from '../../assets/HomePage/Andre.jpeg'
 import david from '../../assets/HomePage/David.jpeg'
 import nicolas from '../../assets/HomePage/Nicolas.jpeg'
 import { api } from '../../services/api';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const HomePage = () => {
+
+  const location = useLocation();
+
+  const collectionRef = useRef(null);
+  const [goToCollection] = useState(location.state?.toCollection);
+
+  const scrollToCollection = () => collectionRef.current.scrollIntoView();
 
   const [reccomendations, setReccomendations] = useState([])
 
@@ -25,6 +33,12 @@ const HomePage = () => {
   useEffect(() => {
     loadRecommendations();
   }, [])
+
+  useEffect(() => {
+    if (goToCollection === true){
+      scrollToCollection();
+    }
+  }, [goToCollection])
 
   return (
     <>
@@ -70,7 +84,7 @@ const HomePage = () => {
       </div>
     </AboutUsContainer>
 
-    <RecommendationsContainer>
+    <RecommendationsContainer ref={collectionRef} >
       <CarouselSection reccomendations={reccomendations} />
     </RecommendationsContainer>
     </>

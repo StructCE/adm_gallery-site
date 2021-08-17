@@ -1,7 +1,7 @@
 import React from 'react'
 import { api } from '../../services/api';
 import { useEffect, useState } from 'react';
-import { ProfileContainer, FavoritesContainer, Container, Paintings, Line } from './styles';
+import { ProfileContainer, ModalContainer, FavoritesContainer, Container, Paintings, Line } from './styles';
 import { IoColorPaletteOutline, IoCogOutline } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 import { FiEdit } from "react-icons/fi";
@@ -15,6 +15,10 @@ import GalleryHeader from "../../components/GalleryHeader";
 import SearchField from "../../components/SearchField";
 import Filter from "../../components/Filter";
 import FramedPainting from "../../components/FramedPainting"
+import Modal from '../../components/Modal';
+import Input from "../../components/Input";
+import { BiUser, BiMessageSquareEdit } from "react-icons/bi";
+import { IoIosMail, IoIosLock } from 'react-icons/io'
 
 const ProfilePage = () => {
 
@@ -42,6 +46,7 @@ const ProfilePage = () => {
       }
       filterPaintings(selectedFilter);
   }, [selectedFilter, paintings])
+
   useEffect(() => {
       const findPaintings = (searchInput) => {
           let foundPaintings = []
@@ -62,24 +67,96 @@ const ProfilePage = () => {
           setSearchedPaintings(filteredPaintings)
   }, [searchInput, filteredPaintings])
 
-  const {user} = useUserContext()
+  const {user, togglePrivate, update, editPhoto} = useUserContext()
+
+  // Form control
+  const [name, setName] = useState(user.name)
+  const [bio, setBio] = useState(user.bio)
+  const [password, setPassword] = useState()
+  const [password_confirmation, setPasswordConf] = useState()
+  const [image, setImage] = useState("")
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if(name === ''){
+        alert('Nome deve estar preenchido.');
+    }else if(password === ''){
+        alert('Senha deve estar preenchida.');
+    };
+    await update({name, bio, password, password_confirmation})
+  };
+
+  const handleImageSubmit = async (e) => {
+    e.preventDefault();
+    await editPhoto({image})
+  };
+
+  // Modal Controllers
+  const [photoModal, setPhotoModal] = useState(false)
+
+  const openPhotoModal = () => {
+    setPhotoModal(prev => !prev)
+  }
+
+  const [editModal, setEditModal] = useState(false)
+
+  const openEditModal = () => {
+    setEditModal(prev => !prev)
+  }
 
   return (
     <>
       <ProfileContainer>
+        <Modal showModal={editModal} setShowModal={setEditModal}> 
+          <ModalContainer>
+          <form onSubmit={handleSubmit}>
+            <Input 
+                Icon={BiUser}
+                placeholder = "Nome"
+                onChange={(value) => {setName(value.target.value)}}
+            />
+            <Input 
+                Icon={BiMessageSquareEdit}
+                placeholder = "Biografia"
+                onChange={(value) => {setBio(value.target.value)}}
+            />
+            <Input
+                Icon={IoIosLock}
+                placeholder = "Senha"
+                type = 'password'
+                onChange={(value) => {setPassword(value.target.value)}}
+            />
+            <Input
+                Icon={IoIosLock}
+                placeholder = "Confirmação de Senha"
+                type = 'password'
+                onChange={(value) => {setPasswordConf(value.target.value)}}
+            />
+            <Button>Enviar</Button>
+          </form>
+          </ModalContainer>
+        </Modal>
+        <Modal showModal={photoModal} setShowModal={setPhotoModal}> 
+          <ModalContainer>
+            <form onSubmit={handleImageSubmit}>
+              <input type="file" onChange={(e) => {setImage(e.target.files[0].name)}}/>
+              <Button>Enviar</Button>
+            </form>
+          </ModalContainer>
+        </Modal>
         <div className="info-area">
           <div className="info-bar">
             <span className="info-text">Seu Perfil</span>
             <div className="icons-area">
               <IoColorPaletteOutline className="color-icon"/>
-              <IoCogOutline className="config-icon"/>
+              <IoCogOutline onClick={openEditModal} className="config-icon"/>
             </div>
           </div>
-          <div className="profile-photo">
+          <div onClick={openPhotoModal} className="profile-photo">
             <img src={user.image_url != null ? `${api.defaults.baseURL + user.image_url}` : placeholder} alt="Foto de perfil" />
             <FiEdit className="edit-icon"/>
           </div>
-          {user.confidential === true ? <HiLockClosed className="lock-icon"/> : <HiLockOpen className="lock-icon"/>}
+          {user.confidential === true ? <HiLockClosed onClick={togglePrivate} className="lock-icon"/> : <HiLockOpen onClick={togglePrivate} className="lock-icon"/>}
         </div>
         <div className="user-info">
           <div className="user-data">
@@ -87,7 +164,7 @@ const ProfilePage = () => {
             <p>{user.bio === null ? "Esse perfil ainda não tem uma biografia :(" : user.bio}</p>
           </div>
           <div className="collection-info">
-            <span>Coleção do Usuário</span>
+            <span>Sua Coleção</span>
             <div className="arrow-icon">
               <IoIosArrowDown/>
             </div>

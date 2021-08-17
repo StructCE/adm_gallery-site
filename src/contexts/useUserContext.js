@@ -66,8 +66,61 @@ const UserProvider = ({children}) => {
         }
     }
 
+    const togglePrivate = async () => {
+        try{
+            const response = await api.patch('/api/v1/users/update', {
+                confidential: !user.confidential
+            })
+            if(response.data) {
+                setUser(response.data)
+                Cookies.set('gallery.user', JSON.stringify(response.data))
+                alert('Confidencialidade atualizada')
+            }
+        }catch(e){
+            alert(e)
+        }
+    }
+
+    const editPhoto = async ({image}) => {
+        try{
+            const response = await api.post(`/api/v1/users/edit_image`, {
+                image
+            }, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            })
+            if(response.data) {
+                setUser(response.data)
+                Cookies.set('gallery.user', JSON.stringify(response.data))
+                alert('Foto atualizada')
+            }
+        }catch(e){
+            alert(e)
+        }
+    }
+
+
+    const update = async ({name, bio, password, password_confirmation}) => {
+        try{
+            const response = await api.patch('/api/v1/users/update', {
+                name,
+                bio,
+                password,
+                password_confirmation,
+            })
+            if(response.data) {
+                setUser(response.data)
+                Cookies.set('gallery.user', JSON.stringify(response.data))
+                alert('Dados Atualizados')
+            }
+        }catch(e){
+            alert(e)
+        }
+    }
+
     return (
-        <UserContext.Provider value={{user, login, logout}}>
+        <UserContext.Provider value={{user, login, logout, togglePrivate, update, editPhoto}}>
             {children}
         </UserContext.Provider>
     )

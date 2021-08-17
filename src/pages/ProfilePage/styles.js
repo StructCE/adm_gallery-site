@@ -103,7 +103,7 @@ export const ProfileContainer = styled.section`
     .user-data{
       margin-left: auto;
       margin-right: auto;
-      width: 60vw;
+      width: 70vw;
     }
     h1{
       line-height: 10rem;
@@ -311,3 +311,15 @@ export const Container = styled.div`
     justify-content: space-around;
     margin: 2vh auto;
 `
+export const ModalContainer = styled.div`
+  width: 40vw;
+  min-height: fit-content;
+  background-color: white;
+  border-width: thin;
+  border-radius: 50px 50px 50px 50px;
+  padding: 2rem;
+  @media screen and (max-width: 450px){
+    width: 90vw;
+    padding: 1rem;
+  }
+`;

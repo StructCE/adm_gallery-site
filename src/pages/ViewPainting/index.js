@@ -13,6 +13,8 @@ import ImagePaintingForm from "../../components/ImagePaintingForm "
 import PlusButton from "../../components/PlusButton";
 import { useHistory } from 'react-router-dom';
 import { useUserContext } from '../../contexts/useUserContext';
+import { FaTrashAlt } from 'react-icons/fa'
+import RemoveButton from '../../components/RemoveButton';
 
 
 const ViewPainting = () => {
@@ -107,10 +109,22 @@ const ViewPainting = () => {
         }
     }
 
+    const deletePainting = async () => {
+        try{
+            if (window.confirm("Deseja excluir essa obra")){
+                await api.delete(`/api/v1/paintings/destroy/${id}`)
+                alert('Obra excluída com sucesso!')
+                history.push('/paintings')
+            }
+        }catch(e){
+            alert(e);
+        }
+    }
+
     return (
         painting &&
         <Container>
-            {user!== null && user.admin && <ImagePaintingForm showModal={showModal} setShowModal={setShowModal} id={painting.id}/> }
+            {user !== null && user.admin && <ImagePaintingForm showModal={showModal} setShowModal={setShowModal} id={painting.id}/> }
             <FirstScreen>
                 <h1>{painting.name}</h1>
                 <h3 className="year">{painting.year}</h3>
@@ -190,7 +204,12 @@ const ViewPainting = () => {
                 </div>
             </SecondScreen>
             <div className="form-buttons">
-                {user!== null && user.admin && <PlusButton onClick={handleShowModal}><MdPhoto/></PlusButton> }
+                {user!== null && user.admin && 
+                    <>
+                        <PlusButton onClick={handleShowModal}><MdPhoto/></PlusButton>
+                        <RemoveButton onClick={deletePainting}><FaTrashAlt/></RemoveButton>
+                    </>
+                }
             </div>
         </Container>
     )

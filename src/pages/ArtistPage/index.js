@@ -13,6 +13,9 @@ import ImageArtistForm from "../../components/ImageArtistForm"
 import PlusButton from "../../components/PlusButton";
 import { useHistory } from "react-router-dom";
 import { useUserContext } from "../../contexts/useUserContext"
+import RemoveButton from '../../components/RemoveButton';
+import { FaTrashAlt } from 'react-icons/fa'
+
 
 const ArtistPage = () => {
 
@@ -53,6 +56,18 @@ const ArtistPage = () => {
         }
     }
 
+    const deleteArtist = async () => {
+      try{
+          if (window.confirm("Deseja remover esse artista?")){
+              await api.delete(`/api/v1/artists/destroy/${id}`)
+              alert('Artista removido com sucesso!')
+              history.push('/artists')
+          }
+      }catch(e){
+          alert(e);
+      }
+  }
+
   return (
     <Container>
       {user!== null && user.admin && <ImageArtistForm showModal={showModal} setShowModal={setShowModal} id={artist.id}/> }
@@ -83,7 +98,12 @@ const ArtistPage = () => {
         </div>
       </div>
       <div className="form-buttons">
-        {user!== null && user.admin && <PlusButton onClick={handleShowModal}><MdPhoto/></PlusButton> }
+        {user!== null && user.admin && 
+          <>
+            <PlusButton onClick={handleShowModal}><MdPhoto/></PlusButton>
+            <RemoveButton onClick={deleteArtist}><FaTrashAlt/></RemoveButton>
+          </>
+        }
       </div>
     </Container>
   )

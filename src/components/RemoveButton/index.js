@@ -1,6 +1,6 @@
 import { Container } from "./styles"
 
-const PlusButton = ({children, onClick, ...props}) => {
+const RemoveButton = ({children, onClick, ...props}) => {
     return (
         <Container onClick={onClick} type='button' {...props}>
             {children}
@@ -8,4 +8,4 @@ const PlusButton = ({children, onClick, ...props}) => {
     )
 }
 
-export default PlusButton
+export default RemoveButton

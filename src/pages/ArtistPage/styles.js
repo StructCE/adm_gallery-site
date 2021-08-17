@@ -13,6 +13,8 @@ export const Container = styled.section`
         bottom:0;
         left: 0;
         margin: 1rem;
+        display: flex;
+        flex-direction: column;
     }
 
   .artist-data{

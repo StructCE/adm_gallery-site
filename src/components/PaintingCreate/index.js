@@ -12,6 +12,7 @@ import Select from "../Select"
 import StyleForms from "../StyleCreate"
 import TextArea from "../TextArea"
 import { Container, SelectContainer } from "./styles"
+import {GiLouvrePyramid} from "react-icons/gi"
 
 const PaintingsForms = ({showModal, setShowModal}) => {
     
@@ -185,7 +186,7 @@ const PaintingsForms = ({showModal, setShowModal}) => {
                         </SelectContainer>
                         <FormsInput
                             placeholder='Localização atual'
-                            Icon={ IconSVG5 }
+                            Icon={ GiLouvrePyramid }
                             onChange={(value) => {setCurrentplace(value.target.value)}}
                         />
                         <FormsButton type="submit">Adicionar Obra</FormsButton>

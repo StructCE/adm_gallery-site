@@ -6,16 +6,19 @@ export const Background = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.7);
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 10;
 `;
 
+
 export const ModalWrapper = styled.div`
   margin: 1%;
   z-index: 20;
+
+  position: relative;
 `;
 
 export const CloseBtn = styled(MdClose)`
@@ -32,5 +35,11 @@ export const CloseBtn = styled(MdClose)`
     &:hover {
       background-color: rgba(242, 244, 243, 0.5);
       cursor: pointer;
+    }
+
+    @media screen and (max-height: 1080px) {
+      position: fixed;
+      left: 2rem;
+      top: 2rem;
     }
 `;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.button`
     outline: none;
-    border: 3px solid #5D5FEF;
+    border: 3px solid #6F1D1B;
     border-radius: 5rem;
     color: #000;
     height: 4.375rem;
@@ -15,7 +15,7 @@ export const Container = styled.button`
     }
     font-size: 1.875rem;
     &:hover {
-        background-color: #AEAFF7;
+        background-color: #965C5A;
         transition: 0.2s;
         cursor: pointer;
     }

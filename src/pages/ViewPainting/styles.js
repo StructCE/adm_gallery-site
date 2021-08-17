@@ -21,9 +21,12 @@ export const Container = styled.section`
 
     .form-buttons{
         position: fixed;
-        bottom:0;
+        top:0;
         left: 0;
         margin: 1rem;
+        z-index: 201;
+        display: flex;
+        flex-direction: column;
     }
 `
 

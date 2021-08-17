@@ -33,7 +33,7 @@ const ImagePaintingForm = ({showModal, setShowModal, id}) => {
         <Modal showModal={showModal} setShowModal={setShowModal}>
             <Container>
                 <form onSubmit={handleSubmit}>
-                    <h1>Atulizar Imagem</h1>
+                    <h1>Atualizar Imagem</h1>
                     <input type="file" onChange={(e) => {setImage(e.target.files[0])}}/>
                     <FormsButton type="submit">Atualizar</FormsButton>
                 </form>

@@ -4,15 +4,21 @@ import { useEffect, useState } from 'react';
 import { Container } from './styles';
 import { WiStars } from "react-icons/wi";
 import { CgCross } from "react-icons/cg";
+import { MdPhoto } from "react-icons/md";
 import { IoLocationSharp } from "react-icons/io5";
 import { useParams } from "react-router-dom";
 import Button from "../../components/Button";
 import placeholder from "../../assets/placeholder.png"
+import ImageArtistForm from "../../components/ImageArtistForm"
+import PlusButton from "../../components/PlusButton";
 import { useHistory } from "react-router-dom";
+import { useUserContext } from "../../contexts/useUserContext"
 
 const ArtistPage = () => {
 
   let { id } = useParams();
+
+  const {user} = useUserContext()
 
   const [artist, setArtist] = useState([]);
   const history = useHistory()
@@ -35,8 +41,21 @@ const ArtistPage = () => {
     })
   }
 
+  const [showModal, setShowModal] = useState(false)
+
+    const handleShowModal = () => {
+        if (user != null){
+            if (user.admin){
+                setShowModal(true)
+            }
+        }else{
+            alert('Você não é adm.')
+        }
+    }
+
   return (
     <Container>
+      {user!== null && user.admin && <ImageArtistForm showModal={showModal} setShowModal={setShowModal} id={artist.id}/> }
       <div className="artist-img">
         <img src={artist.image_url != null ? `${api.defaults.baseURL + artist.image_url}` : placeholder} alt={`${artist.name}`} />
       </div>
@@ -62,6 +81,9 @@ const ArtistPage = () => {
         <div className="paintings-btn">
           <Button onClick={handleClick}>Principais Obras</Button>
         </div>
+      </div>
+      <div className="form-buttons">
+        {user!== null && user.admin && <PlusButton onClick={handleShowModal}><MdPhoto/></PlusButton> }
       </div>
     </Container>
   )

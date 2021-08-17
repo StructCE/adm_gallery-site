@@ -25,7 +25,7 @@ const FramedArtist = ({image, title, id}) => {
     return(
         <Container>
             <Frame>
-                <img src={image} alt="Painting"/>
+                <img src={image} alt={title}/>
             </Frame>
             <Plate>
                 <h2>{title}</h2>

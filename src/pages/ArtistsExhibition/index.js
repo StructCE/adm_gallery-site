@@ -1,44 +1,28 @@
-import FramedPainting from "../../components/FramedPainting"
+import FramedArtist from "../../components/FramedArtist"
 import placeholder from '../../assets/placeholder.png'
 import { Container, PaintingsPage, Paintings, Line } from "./styles";
 import GalleryHeader from "../../components/GalleryHeader";
 import SearchField from "../../components/SearchField";
-import Filter from "../../components/Filter";
 import { api } from "../../services/api";
 import { useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom';
 
-const PaintingExhibition = () => {
+const ArtistsExhibition = () => {
 
-    const location = useLocation();
-
-    const [paintings, setPaintings] = useState([]);
-    const [selectedFilter, setSelectedFilter] = useState(location.state?.selectedFilter);
-    const [filteredPaintings, setFilteredPaintings] = useState([]);
+    const [artists, setArtists] = useState([]);
     const [searchInput, setSearchInput] = useState('');
-    const [searchedPaintings, setSearchedPaintings] = useState([]);
+    const [searchedArtists, setSearchedArtists] = useState([]);
 
     useEffect(() =>{
-        api.get('/api/v1/paintings/index')
+        api.get('/api/v1/artists/index')
         .then((response) => {
-            setPaintings(response.data);
-            setFilteredPaintings(response.data);
+            setArtists(response.data);
         })
     }, [])
 
     useEffect(() => {
-        const filterPaintings = (selected) => {
-            selected ? setFilteredPaintings(paintings.filter(
-                item => (item.style_name === selected || item.artist_name === selected
-            ))) : setFilteredPaintings(paintings)
-        }
-        filterPaintings(selectedFilter);
-    }, [selectedFilter, paintings])
-
-    useEffect(() => {
         const findPaintings = (searchInput) => {
             let foundPaintings = []
-            filteredPaintings.forEach((painting) => {
+            artists.forEach((painting) => {
                 if (painting.name.toUpperCase().indexOf(searchInput.toUpperCase()) > -1)
                     foundPaintings.push(painting)
                 else
@@ -47,28 +31,27 @@ const PaintingExhibition = () => {
                     })
                 foundPaintings = [...new Set(foundPaintings)]
             })
-            setSearchedPaintings(foundPaintings)
+            setSearchedArtists(foundPaintings)
         }
         if (!!searchInput)
             findPaintings(searchInput)
         else
-            setSearchedPaintings(filteredPaintings)
-    }, [searchInput, filteredPaintings])
+            setSearchedArtists(artists)
+    }, [searchInput, artists])
 
     return (
         <PaintingsPage>
-            <GalleryHeader title={"Bem vindo à nossa galeria!"}/>
+            <GalleryHeader title={"Veja todos os nossos artistas!"}/>
             <Paintings>
                 <div className="search-filters">
                     <SearchField placeholder="Nos diga o que está procurando..." onChange={(value) => setSearchInput(value.target.value)}/>
-                    <Filter setSelectedFilter={setSelectedFilter} selectedFilter={selectedFilter}/>
                 </div>
                 <Line/>
                 <Container>
-                    { searchedPaintings.map((item) => {return (
-                        <FramedPainting
+                    { searchedArtists.map((item) => {return (
+                        <FramedArtist
                             image={item.image_url ? `${api.defaults.baseURL + item.image_url}` : placeholder }
-                            title={item.name} artist={item.artist_name} key={item.id} id={item.id}/>
+                            title={item.name} id={item.id} key={item.id} />
                     )}) }
                 </Container>
             </Paintings>
@@ -76,4 +59,4 @@ const PaintingExhibition = () => {
     )
 }
 
-export default PaintingExhibition;
+export default ArtistsExhibition;

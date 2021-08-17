@@ -6,9 +6,9 @@ import { api } from "../../services/api"
 
 
 
-const Filter = ({setSelectedFilter}) => {
+const Filter = ({selectedFilter, setSelectedFilter}) => {
 
-    const [selected, setSelected ] = useState(null);
+    const [selected, setSelected ] = useState(selectedFilter);
     const [showFilters, setShowFilters] = useState(false);
     const [filterOptions, setFilterOptions] = useState([]);
 

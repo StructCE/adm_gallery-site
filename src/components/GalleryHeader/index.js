@@ -2,14 +2,14 @@ import { Container } from "./styles";
 import {ReactComponent as Line} from "../../assets/line.svg"
 import {BsBrush} from "react-icons/bs"
 
-const PaintingsHeader = () => {
+const GalleryHeader = ({title}) => {
     return (
         <Container>
-            <h1>Bem vindo à nossa galeria!</h1>
+            <h1>{title}</h1>
             <Line className="line"/>
             <BsBrush className="icon" size="36"/>
         </Container>
     )
 }
 
-export default PaintingsHeader;
+export default GalleryHeader;

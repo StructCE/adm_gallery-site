@@ -8,7 +8,7 @@ import Modal from "../Modal"
 import TextArea from "../TextArea"
 import { Container } from "./styles"
 
-const StyleForms = ({showModal, setShowModal}) => {
+const StyleUpdate = ({showModal, setShowModal}) => {
 
     let{id} = useParams()
     
@@ -92,4 +92,4 @@ const StyleForms = ({showModal, setShowModal}) => {
     )
 }
 
-export default StyleForms
+export default StyleUpdate

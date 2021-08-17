@@ -13,7 +13,7 @@ import StyleForms from "../StyleCreate"
 import TextArea from "../TextArea"
 import { Container, SelectContainer } from "./styles"
 
-const PaintingsForms = ({showModal, setShowModal}) => {
+const PaintingsUpdate = ({showModal, setShowModal}) => {
 
     let{id} = useParams()
     
@@ -213,4 +213,4 @@ const PaintingsForms = ({showModal, setShowModal}) => {
     )
 }
 
-export default PaintingsForms
+export default PaintingsUpdate

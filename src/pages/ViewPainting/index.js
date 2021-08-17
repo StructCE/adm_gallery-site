@@ -1,6 +1,7 @@
 import { HiOutlineHeart, HiHeart } from 'react-icons/hi';
 import { useState, useEffect, useRef } from 'react'; 
 import { IoIosArrowDown } from 'react-icons/io'
+import { BsBookmarksFill } from 'react-icons/bs'
 import { MdPhoto } from "react-icons/md";
 import { Container, FirstScreen, SecondScreen } from './styles';
 import Button from '../../components/Button'
@@ -13,6 +14,7 @@ import ImagePaintingForm from "../../components/ImagePaintingForm "
 import PlusButton from "../../components/PlusButton";
 import { useHistory } from 'react-router-dom';
 import { useUserContext } from '../../contexts/useUserContext';
+import RecommendatioAddForms from "../../components/RecommendationAdd"
 
 
 const ViewPainting = () => {
@@ -107,10 +109,23 @@ const ViewPainting = () => {
         }
     }
 
+    const [showCollectionModal, setCollectionModal] = useState(false)
+
+    const handleCollectiomModal = () => {
+        if (user != null){
+            if (user.admin){
+                setCollectionModal(true)
+            }
+        }else{
+            alert('Você não é adm.')
+        }
+    }
+
     return (
         painting &&
         <Container>
             {user!== null && user.admin && <ImagePaintingForm showModal={showModal} setShowModal={setShowModal} id={painting.id}/> }
+            {user!== null && user.admin && <RecommendatioAddForms showModal={showCollectionModal} setShowModal={setCollectionModal} painting_id={painting.id} /> }
             <FirstScreen>
                 <h1>{painting.name}</h1>
                 <h3 className="year">{painting.year}</h3>
@@ -191,6 +206,7 @@ const ViewPainting = () => {
             </SecondScreen>
             <div className="form-buttons">
                 {user!== null && user.admin && <PlusButton onClick={handleShowModal}><MdPhoto/></PlusButton> }
+                {user!== null && user.admin && <PlusButton onClick={handleCollectiomModal}><BsBookmarksFill/></PlusButton> }
             </div>
         </Container>
     )

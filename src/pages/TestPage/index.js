@@ -5,6 +5,8 @@ import FormsButton from "../../components/FormsButton"
 import PaintingsForms from "../../components/PaintingCreate"
 import PlusButton from "../../components/PlusButton"
 import StyleForms from "../../components/StyleCreate"
+import RecommendatioForms from "../../components/ReccomendationCreate"
+import RecommendatioAddForms from "../../components/RecommendationAdd"
 import TextArea from "../../components/TextArea"
 import { useUserContext } from "../../contexts/useUserContext"
 
@@ -34,7 +36,7 @@ const Test = () => {
 
     return (
         <>
-            <PaintingsForms showModal={showModal} setShowModal={setShowModal}/>
+            <RecommendatioAddForms showModal={showModal} setShowModal={setShowModal} painting_id={4} />
             <Button onClick={logout}>Logout</Button>
             <PlusButton>+</PlusButton>
             <h1>Hello World</h1>

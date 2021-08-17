@@ -13,7 +13,7 @@ const Select = ({Icon, value, children, ...props}) => {
 
     const handleOnBlur = (event) => {
         setIsFocus(false);
-        setIsFilled(event.target.value != 0 && !!event.target.value);
+        setIsFilled(event.target.value !== 0 && !!event.target.value);
     };
 
     return (

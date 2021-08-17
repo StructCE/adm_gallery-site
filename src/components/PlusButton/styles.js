@@ -7,6 +7,10 @@ export const Container = styled.button`
     color: #000;
     height: 4.375rem;
     width: 4.375rem;
+    position: fixed;
+    bottom:0;
+    right: 0;
+    margin: 1rem;
     @media only screen and (max-width: 1000px) {
         height: 3.5rem;
         font-size: 1.3rem;

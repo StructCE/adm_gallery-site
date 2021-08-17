@@ -36,6 +36,7 @@ const Test = () => {
         <>
             <PaintingsForms showModal={showModal} setShowModal={setShowModal}/>
             <Button onClick={logout}>Logout</Button>
+            <PlusButton>+</PlusButton>
             <h1>Hello World</h1>
             <span>{user ? user.name : 'Não está logado'}</span>
             <FormsButton onClick={handleShowModal}>butao</FormsButton>

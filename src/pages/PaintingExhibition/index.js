@@ -4,13 +4,18 @@ import { Container, PaintingsPage, Paintings, Line } from "./styles";
 import GalleryHeader from "../../components/GalleryHeader";
 import SearchField from "../../components/SearchField";
 import Filter from "../../components/Filter";
+import PlusButton from "../../components/PlusButton";
+import PaintingsForms from "../../components/PaintingCreate"
 import { api } from "../../services/api";
 import { useState, useEffect } from "react";
 import { useLocation } from 'react-router-dom';
+import { useUserContext } from "../../contexts/useUserContext"
 
 const PaintingExhibition = () => {
 
     const location = useLocation();
+
+    const {user} = useUserContext()
 
     const [paintings, setPaintings] = useState([]);
     const [selectedFilter, setSelectedFilter] = useState(location.state?.selectedFilter);
@@ -55,7 +60,21 @@ const PaintingExhibition = () => {
             setSearchedPaintings(filteredPaintings)
     }, [searchInput, filteredPaintings])
 
+    const [showModal, setShowModal] = useState(false)
+
+    const handleShowModal = () => {
+        if (user != null){
+            if (user.admin){
+                setShowModal(true)
+            }
+        }else{
+            alert('Você não é adm.')
+        }
+    }
+
     return (
+        <>
+        {user!== null && user.admin && <PaintingsForms showModal={showModal} setShowModal={setShowModal}/> }
         <PaintingsPage>
             <GalleryHeader title={"Bem vindo à nossa galeria!"}/>
             <Paintings>
@@ -72,7 +91,9 @@ const PaintingExhibition = () => {
                     )}) }
                 </Container>
             </Paintings>
+            {user!== null && user.admin && <PlusButton onClick={handleShowModal}>+</PlusButton> }
         </PaintingsPage>
+        </>
     )
 }
 

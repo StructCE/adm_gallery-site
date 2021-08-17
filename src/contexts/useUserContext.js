@@ -64,6 +64,20 @@ const UserProvider = ({children}) => {
         }
     }
 
+    const createLibrary = async (token, email) => {
+        api.defaults.headers.common['X-User-Token'] = token
+        api.defaults.headers.common['X-User-Email'] = email
+        try{
+            const response = await api.post('/api/v1/library/create')
+            if (response.data) {
+                setLibrary(response.data)
+                alert("Parece que você ainda não tinha uma biblioteca então a criamos para você! :)")
+            }
+        }catch(e){
+            alert(e)
+        }
+    }
+
     const login = async ({email, password}) => {
         try{
             const response = await api.post('/api/v1/users/login', {
@@ -74,6 +88,8 @@ const UserProvider = ({children}) => {
                 setUser(response.data)
                 Cookies.set('gallery.user', JSON.stringify(response.data))
                 alert('Usuário logado.')
+                if (!response.data.library)
+                    createLibrary(response.data.authentication_token, response.data.email)
                 history.push('/')
             }
         }catch(e){

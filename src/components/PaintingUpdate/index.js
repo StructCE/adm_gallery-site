@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useState } from "react"
 import { BiUser } from "react-icons/bi"
-import { useHistory, useParams } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import { api } from "../../services/api"
 import ArtistForms from "../ArtistCreate"
 import FormsButton from "../FormsButton"
@@ -13,9 +13,7 @@ import StyleForms from "../StyleCreate"
 import TextArea from "../TextArea"
 import { Container, SelectContainer } from "./styles"
 
-const PaintingsUpdate = ({showModal, setShowModal}) => {
-
-    let{id} = useParams()
+const PaintingsUpdate = ({showModal, setShowModal, id}) => {
     
     const[name, setName] = useState('')
     const[year, setYear] = useState('')
@@ -138,7 +136,7 @@ const PaintingsUpdate = ({showModal, setShowModal}) => {
             alert('Localização atual deve estar preenchida.')
         }
         try{
-            const response = await api.post(`/api/v1/paintings/update/${id}`, {
+            const response = await api.put(`/api/v1/paintings/update/${id}`, {
                 painting: {
                     name,
                     year,

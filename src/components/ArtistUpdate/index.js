@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useHistory, useParams } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import { api } from "../../services/api"
 import FormsButton from "../FormsButton"
 import FormsInput from "../FormsInput"
@@ -9,9 +9,7 @@ import { Container } from "./styles"
 import { BiUser } from "react-icons/bi";
 import { useEffect } from "react"
 
-const ArtistUpdate = ({showModal, setShowModal}) => {
-
-    let{id} = useParams()
+const ArtistUpdate = ({showModal, setShowModal, id}) => {
     
     const[name, setName] = useState('')
     const[biography, setBiography] = useState('')
@@ -22,11 +20,9 @@ const ArtistUpdate = ({showModal, setShowModal}) => {
     const history = useHistory()
 
     const loadArtist = async () => {
-        const response = await api.get(`api/v1/artists/show/${id}`)
+        const response = await api.get(`/api/v1/artists/show/${id}`)
         setName(response.data.name)
         setBiography(response.data.biography)
-        setBirthdate(response.data.birthdate)
-        setDeathdate(response.data.deathdate)
         setBirthplace(response.data.birthplace)
     }
 
@@ -76,7 +72,7 @@ const ArtistUpdate = ({showModal, setShowModal}) => {
             alert('Cidade natal deve estar preenchida.')
         }
         try{
-            const response = await api.post(`/api/v1/artists/update/${id}`, {
+            const response = await api.put(`/api/v1/artists/update/${id}`, {
                 artist: {
                     name,
                     biography,

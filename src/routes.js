@@ -32,7 +32,7 @@ export const Routes = () => {
       <Route exact path="/paintings/:id">
         <ViewPainting />
       </Route>
-      <Route exact path="/test">
+      <Route path="/test">
         <Test />
       </Route>
     </Switch>

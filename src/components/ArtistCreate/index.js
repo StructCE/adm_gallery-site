@@ -2,12 +2,11 @@ import { useState } from "react"
 import { useHistory } from "react-router-dom"
 import { api } from "../../services/api"
 import FormsButton from "../FormsButton"
-import FormsInput from "../FormsInput"
+import Input from "../Input"
 import Modal from "../Modal"
 import TextArea from "../TextArea"
-import { Container } from "./styles"
 
-const StyleForms = ({showModal, setShowModal}) => {
+const ArtistForms = ({showModal, setShowModal}) => {
     
     const[title, setTitle] = useState('')
     const[description, setDescription] = useState('')
@@ -41,7 +40,7 @@ const StyleForms = ({showModal, setShowModal}) => {
         }
         try{
             const response = await api.post('/api/v1/styles/create', {
-                style: {
+                artist: {
                     title,
                     description
                 }
@@ -57,24 +56,22 @@ const StyleForms = ({showModal, setShowModal}) => {
 
     return (
         <Modal showModal={showModal} setShowModal={setShowModal}>
-            <Container>
-                <form onSubmit={handleSubmit}>
-                    <h1>Novo Estilo</h1>
-                    <FormsInput
-                        placeholder='Título'
-                        Icon={ IconSVG1 }
-                        onChange={(value) => {setTitle(value.target.value)}}
-                    />
-                    <TextArea
-                        placeholder='Descrição'
-                        Icon={ IconSVG2 }
-                        onChange={(value) => {setDescription(value.target.value)}}
-                    />
-                    <FormsButton type="submit">Adicionar Estilo</FormsButton>
-                </form>
-            </Container>
+            <form onSubmit={handleSubmit}>
+                <h1>Novo Estilo</h1>
+                <Input
+                    placeholder='Título'
+                    Icon={ IconSVG1 }
+                    onChange={(value) => {setTitle(value.target.value)}}
+                />
+                <TextArea
+                    placeholder='Descrição'
+                    Icon={ IconSVG2 }
+                    onChange={(value) => {setDescription(value.target.value)}}
+                />
+                <FormsButton type="submit">Adicionar Estilo</FormsButton>
+            </form>
         </Modal>
     )
 }
 
-export default StyleForms
+export default ArtistForms

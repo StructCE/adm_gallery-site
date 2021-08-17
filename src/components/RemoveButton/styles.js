@@ -10,6 +10,7 @@ export const Container = styled.button`
     margin: 0.5rem;
     @media only screen and (max-width: 1000px) {
         height: 3.5rem;
+        width: 3.5rem;
         font-size: 1.3rem;
     }
     font-size: 1.875rem;

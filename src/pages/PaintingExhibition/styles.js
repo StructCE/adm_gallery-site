@@ -4,6 +4,13 @@ export const PaintingsPage = styled.section`
     background: #F2F4F3;
     padding: 10vh 0;
     min-height: 100vh;
+
+    .form-buttons{
+        position: fixed;
+        bottom:0;
+        right: 0;
+        margin: 1rem;
+    }
 `
 
 export const Paintings = styled.div`

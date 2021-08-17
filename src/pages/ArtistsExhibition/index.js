@@ -3,10 +3,15 @@ import placeholder from '../../assets/placeholder.png'
 import { Container, PaintingsPage, Paintings, Line } from "./styles";
 import GalleryHeader from "../../components/GalleryHeader";
 import SearchField from "../../components/SearchField";
+import PlusButton from "../../components/PlusButton";
+import ArtistForms from "../../components/ArtistCreate"
 import { api } from "../../services/api";
 import { useState, useEffect } from "react";
+import { useUserContext } from "../../contexts/useUserContext"
 
 const ArtistsExhibition = () => {
+
+    const {user} = useUserContext()
 
     const [artists, setArtists] = useState([]);
     const [searchInput, setSearchInput] = useState('');
@@ -39,7 +44,21 @@ const ArtistsExhibition = () => {
             setSearchedArtists(artists)
     }, [searchInput, artists])
 
+    const [showModal, setShowModal] = useState(false)
+
+    const handleShowModal = () => {
+        if (user != null){
+            if (user.admin){
+                setShowModal(true)
+            }
+        }else{
+            alert('Você não é adm.')
+        }
+    }
+
     return (
+        <>
+        {user!== null && user.admin && <ArtistForms showModal={showModal} setShowModal={setShowModal}/> }
         <PaintingsPage>
             <GalleryHeader title={"Veja todos os nossos artistas!"}/>
             <Paintings>
@@ -55,7 +74,11 @@ const ArtistsExhibition = () => {
                     )}) }
                 </Container>
             </Paintings>
+            <div className="form-buttons">
+                {user!== null && user.admin && <PlusButton onClick={handleShowModal}>+</PlusButton> }
+            </div>
         </PaintingsPage>
+        </>
     )
 }
 

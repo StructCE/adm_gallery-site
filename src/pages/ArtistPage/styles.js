@@ -8,6 +8,13 @@ export const Container = styled.section`
   background-color: var(--PerisanPlum);
   color: white;
 
+  .form-buttons{
+        position: fixed;
+        bottom:0;
+        left: 0;
+        margin: 1rem;
+    }
+
   .artist-data{
     display: flex;
     flex-direction: column;

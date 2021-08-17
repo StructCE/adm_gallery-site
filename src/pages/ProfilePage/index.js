@@ -88,18 +88,22 @@ const ProfilePage = () => {
     await update({name, bio, password, password_confirmation})
   };
 
-  let data = new FormData()
   const handleImageSubmit = async (e) => {
-    data.append('image', image, image.name)
-    await api.post(`/api/v1/users/edit_image/${user.id}`, data, {
+    e.preventDefault()
+    try{
+      const data = new FormData()
+      data.append('image', image, image.name)
+      const response = await api.post(`/api/v1/users/edit_image/${user.id}`, data, {
         'accept': 'application/json',
         'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
-      }).then(() => {
-        updateUser()
-        alert('Foto atualizada')
-      }).catch((e) => {
-        alert(e)
       })
+      if(response.data){
+        updateUser()
+        alert('Foto Atualizada!')
+      }
+    }catch(error){
+      alert(error)
+    }
   };
 
   const handleColorChange = (color) => {

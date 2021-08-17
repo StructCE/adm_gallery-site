@@ -5,8 +5,10 @@ import LoginPage from "./pages/LoginPage"
 import SignUpPage from "./pages/SignUpPage"
 import ArtistPage from "./pages/ArtistPage";
 import ArtistsExhibition from "./pages/ArtistsExhibition"
+import ProfilePage from "./pages/ProfilePage"
 import ViewPainting from './pages/ViewPainting';
 import Test from "./pages/TestPage"
+import { PrivateRoute } from "./privateRoute.js"
 
 export const Routes = () => {
   return (
@@ -20,6 +22,7 @@ export const Routes = () => {
       <Route exact path="/login">
         <LoginPage />
       </Route>
+      <PrivateRoute exact path="/profile" component={ProfilePage}/>
       <Route exact path="/paintings">
         <PaintingExhibition/>
       </Route>

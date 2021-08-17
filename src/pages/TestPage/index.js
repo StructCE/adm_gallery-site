@@ -3,6 +3,7 @@ import ArtistForms from "../../components/ArtistCreate"
 import Button from "../../components/Button"
 import FormsButton from "../../components/FormsButton"
 import PaintingsForms from "../../components/PaintingCreate"
+import ArtistUpdate from "../../components/ArtistUpdate"
 import PlusButton from "../../components/PlusButton"
 import StyleForms from "../../components/StyleCreate"
 import TextArea from "../../components/TextArea"
@@ -34,7 +35,7 @@ const Test = () => {
 
     return (
         <>
-            <PaintingsForms showModal={showModal} setShowModal={setShowModal}/>
+            <ArtistUpdate showModal={showModal} setShowModal={setShowModal} id={1}/>
             <Button onClick={logout}>Logout</Button>
             <PlusButton>+</PlusButton>
             <h1>Hello World</h1>

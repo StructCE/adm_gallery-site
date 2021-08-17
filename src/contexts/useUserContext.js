@@ -64,6 +64,20 @@ const UserProvider = ({children}) => {
         }
     }
 
+    const createLibrary = async (token, email) => {
+        api.defaults.headers.common['X-User-Token'] = token
+        api.defaults.headers.common['X-User-Email'] = email
+        try{
+            const response = await api.post('/api/v1/library/create')
+            if (response.data) {
+                setLibrary(response.data)
+                alert("Parece que você ainda não tinha uma biblioteca então a criamos para você! :)")
+            }
+        }catch(e){
+            alert(e)
+        }
+    }
+
     const login = async ({email, password}) => {
         try{
             const response = await api.post('/api/v1/users/login', {
@@ -74,6 +88,8 @@ const UserProvider = ({children}) => {
                 setUser(response.data)
                 Cookies.set('gallery.user', JSON.stringify(response.data))
                 alert('Usuário logado.')
+                if (!response.data.library)
+                    createLibrary(response.data.authentication_token, response.data.email)
                 history.push('/')
             }
         }catch(e){
@@ -81,8 +97,53 @@ const UserProvider = ({children}) => {
         }
     }
 
+    const togglePrivate = async () => {
+        try{
+            const response = await api.patch('/api/v1/users/update', {
+                confidential: !user.confidential
+            })
+            if(response.data) {
+                setUser(response.data)
+                Cookies.set('gallery.user', JSON.stringify(response.data))
+                alert('Confidencialidade atualizada')
+            }
+        }catch(e){
+            alert(e)
+        }
+    }
+
+    const update = async ({name, bio, password, password_confirmation}) => {
+        try{
+            const response = await api.patch('/api/v1/users/update', {
+                name,
+                bio,
+                password,
+                password_confirmation
+            })
+            if(response.data) {
+                setUser(response.data)
+                Cookies.set('gallery.user', JSON.stringify(response.data))
+                alert('Dados Atualizados')
+            }
+        }catch(e){
+            alert(e)
+        }
+    }
+
+    const updateUser = async () => {
+        try{
+            const response = await api.get(`/api/v1/users/show/${user.id}`)
+            if(response.data) {
+                setUser(response.data)
+                Cookies.set('gallery.user', JSON.stringify(response.data))
+            }
+        }catch(e){
+            alert(e)
+        }
+    }
+
     return (
-        <UserContext.Provider value={{user, login, logout, library}}>
+        <UserContext.Provider value={{user, login, logout, library, togglePrivate, update, updateUser}}>
             {children}
         </UserContext.Provider>
     )

@@ -1,7 +1,8 @@
 import { HiOutlineHeart, HiHeart } from 'react-icons/hi';
 import { useState, useEffect, useRef } from 'react'; 
 import { IoIosArrowDown } from 'react-icons/io'
-import { MdPhoto } from "react-icons/md";
+import { MdPhoto, MdEdit } from "react-icons/md";
+import PaintingUpdate from "../../components/PaintingUpdate"
 import { Container, FirstScreen, SecondScreen } from './styles';
 import Button from '../../components/Button'
 import Arrow from '../../assets/arrow-icon.png'
@@ -120,11 +121,24 @@ const ViewPainting = () => {
             alert(e);
         }
     }
+    
+    const [showEditModal, setEditModal] = useState(false)
+
+    const handleEditModal = () => {
+        if (user != null){
+            if (user.admin){
+              setEditModal(true)
+            }
+        }else{
+            alert('Você não é adm.')
+        }
+    }
 
     return (
         painting &&
         <Container>
-            {user !== null && user.admin && <ImagePaintingForm showModal={showModal} setShowModal={setShowModal} id={painting.id}/> }
+            {user!== null && user.admin && <ImagePaintingForm showModal={showModal} setShowModal={setShowModal} id={painting.id}/> }
+            {user!== null && user.admin && <PaintingUpdate showModal={showEditModal} setShowModal={setEditModal} id={painting.id}/> }
             <FirstScreen>
                 <h1>{painting.name}</h1>
                 <h3 className="year">{painting.year}</h3>
@@ -207,6 +221,7 @@ const ViewPainting = () => {
                 {user!== null && user.admin && 
                     <>
                         <PlusButton onClick={handleShowModal}><MdPhoto/></PlusButton>
+                        <PlusButton onClick={handleEditModal}><MdEdit/></PlusButton>
                         <RemoveButton onClick={deletePainting}><FaTrashAlt/></RemoveButton>
                     </>
                 }

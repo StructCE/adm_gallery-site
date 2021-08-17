@@ -1,6 +1,9 @@
 import { useState } from "react"
+import ArtistForms from "../../components/ArtistCreate"
 import Button from "../../components/Button"
 import FormsButton from "../../components/FormsButton"
+import PaintingsForms from "../../components/PaintingCreate"
+import PlusButton from "../../components/PlusButton"
 import StyleForms from "../../components/StyleCreate"
 import TextArea from "../../components/TextArea"
 import { useUserContext } from "../../contexts/useUserContext"
@@ -19,8 +22,19 @@ const Test = () => {
         )
     }
 
+    const handleShowModal = () => {
+        if (user != null){
+            if (user.admin){
+                setShowModal(true)
+            }
+        }else{
+            alert('Você não é adm.')
+        }
+    }
+
     return (
         <>
+            <PaintingsForms showModal={showModal} setShowModal={setShowModal}/>
             <Button onClick={logout}>Logout</Button>
             <h1>Hello World</h1>
             <span>{user ? user.name : 'Não está logado'}</span>
@@ -28,8 +42,7 @@ const Test = () => {
                 Icon={ IconSVG }
                 placeholder='texrenhaqdfglnja'
             />
-            <FormsButton onClick={() => {setShowModal(true)}}>butao</FormsButton>
-            <StyleForms showModal={showModal} setShowModal={setShowModal}/>
+            <FormsButton onClick={handleShowModal}>butao</FormsButton>
         </>
     )
 }

@@ -20,7 +20,7 @@ export const Container = styled.div`
             border-color: #5E503F;
         `
     }
-    input {
+    select {
         margin-left: 1.3rem;
         margin-right: 0.8rem;
         height: 100%;

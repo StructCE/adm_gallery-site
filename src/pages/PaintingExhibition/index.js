@@ -61,7 +61,7 @@ const PaintingExhibition = () => {
             <Paintings>
                 <div className="search-filters">
                     <SearchField placeholder="Nos diga o que está procurando..." onChange={(value) => setSearchInput(value.target.value)}/>
-                    <Filter setSelectedFilter={setSelectedFilter}/>
+                    <Filter setSelectedFilter={setSelectedFilter} selectedFilter={selectedFilter}/>
                 </div>
                 <Line/>
                 <Container>

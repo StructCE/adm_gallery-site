@@ -128,11 +128,6 @@ export const FirstScreen = styled.div`
             }
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
         h5 {
             display: flex;
             flex-direction: column;

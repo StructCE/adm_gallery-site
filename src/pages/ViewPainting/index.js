@@ -1,5 +1,5 @@
 import { HiOutlineHeart, HiHeart } from 'react-icons/hi';
-import { useState, useEffect } from 'react'; 
+import { useState, useEffect, useRef } from 'react'; 
 import { IoIosArrowDown } from 'react-icons/io'
 import { Container, FirstScreen, SecondScreen } from './styles';
 import Button from '../../components/Button'
@@ -14,7 +14,7 @@ import { useHistory } from 'react-router-dom';
 const ViewPainting = () => {
 
     let history = useHistory();
-
+    const screenRef = useRef(null);
     const location = useLocation();
     const {id} = useParams();
 
@@ -24,6 +24,8 @@ const ViewPainting = () => {
     const [painting, setPainting] = useState(location.state?.painting || {});
     const [artist, setArtist] = useState({});
     const [favorite, setFavorite] = useState(false);
+
+    const scrollPage = () => screenRef.current.scrollIntoView({behavior: 'smooth'});
 
 
     const handleFavoriteClick = () => {
@@ -91,12 +93,10 @@ const ViewPainting = () => {
                             <p>Anterior na Categoria</p>
                         </div>
                     }
-                    <a href="#second-screen">
-                        <h5>
+                        <h5 onClick={() => {scrollPage()}}>
                             Leia sobre
                             <IoIosArrowDown/>
                         </h5>
-                    </a>
                     {(index < (stylePaintings.length - 1)) &&
                         <div className="next" onClick={() => history.push(`/paintings/${stylePaintings[index + 1].id}`)}>
                             <p>Próximo na Categoria</p>
@@ -106,7 +106,7 @@ const ViewPainting = () => {
 
                 </div>
             </FirstScreen>
-            <SecondScreen id="second-screen">
+            <SecondScreen ref={screenRef}>
                 <div className="top">
                     <div className="left">
                         <div className="image-container">

@@ -1,10 +1,14 @@
 import { ImageContainer } from './styles';
+import { Link } from 'react-router-dom';
 
-const CarouselImage = ({ imgUrl, title }) => {
+const CarouselImage = ({ imgUrl, title, id }) => {
+
   return (
       <ImageContainer>
         <img src={imgUrl} alt={title}/>
-        <p className="legend">{title}</p>
+        <Link className="image-link" to={`/paintings/${id}`}>
+          <p className="legend">{title}</p>
+        </Link>
       </ImageContainer>
   )
 }

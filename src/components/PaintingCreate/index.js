@@ -146,8 +146,6 @@ const PaintingsForms = ({showModal, setShowModal}) => {
 
     return (
         <>
-            <ArtistForms showModal={showArtistModal} setShowModal={setShowArtistModal}/>
-            <StyleForms showModal={showStyleModal} setShowModal={setShowStyleModal}/>
             <Modal showModal={showModal} setShowModal={setShowModal}>
                 <Container>
                     
@@ -194,6 +192,8 @@ const PaintingsForms = ({showModal, setShowModal}) => {
                     </form>
                 </Container>
             </Modal>
+            <ArtistForms showModal={showArtistModal} setShowModal={setShowArtistModal}/>
+            <StyleForms showModal={showStyleModal} setShowModal={setShowStyleModal}/>
         </>
     )
 }

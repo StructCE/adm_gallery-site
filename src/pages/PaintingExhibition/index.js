@@ -91,7 +91,9 @@ const PaintingExhibition = () => {
                     )}) }
                 </Container>
             </Paintings>
-            {user!== null && user.admin && <PlusButton onClick={handleShowModal}>+</PlusButton> }
+            <div className="form-buttons">
+                {user!== null && user.admin && <PlusButton onClick={handleShowModal}>+</PlusButton> }
+            </div>
         </PaintingsPage>
         </>
     )

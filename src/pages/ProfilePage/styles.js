@@ -5,7 +5,6 @@ export const ProfileContainer = styled.section`
   position: relative;
   height: 100vh;
   background-color: var(--Cultured);
-  color: var(--PerisanPlum);
 
   .info-bar{
     width: 92px;
@@ -312,7 +311,7 @@ export const Container = styled.div`
     margin: 2vh auto;
 `
 export const ModalContainer = styled.div`
-  width: 40vw;
+  min-width: min-content;
   min-height: fit-content;
   background-color: white;
   border-width: thin;

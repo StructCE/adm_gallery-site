@@ -34,7 +34,7 @@ Caso o erro `ERR_OSSL_EVP_UNSUPPORTED webpack` surja, a sua versão do node pode
 ### `yarn start`
 Roda o projeto em modo de desenvolvedor.
 
-Abra [http://localhost:2000](http://localhost:2000) para visualizar o projeto em seu navegador padrão.
+Abra [http://localhost:3000](http://localhost:3000) para visualizar o projeto em seu navegador padrão.
 
 A página vai recarregar se você fizer qualquer edição e erros no código serão exibidos no terminal.
 
